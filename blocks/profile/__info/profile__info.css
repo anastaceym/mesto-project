@@ -1,0 +1,12 @@
+.profile__info {
+    display: grid;
+    gap: 16px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .profile__info {
+        gap: 10px;
+        padding-top: 22px;
+    }
+  }

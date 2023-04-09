@@ -1,0 +1,31 @@
+.profile__renew-content {
+    width: 150px;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid #ffff;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin-left: 244px;
+    cursor: pointer;
+    background-image: url(../../../images/Vector-adding.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.profile__renew-content:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+    .profile__renew-content {
+        margin-left: 50px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .profile__renew-content {
+        width: 282px;
+        margin-left: 0;
+        margin-top: 36px;
+    }
+  }

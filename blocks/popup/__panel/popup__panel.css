@@ -1,0 +1,6 @@
+.popup__panel {
+    margin: 0 auto;
+    width: 430px;
+    padding-left: 36px;
+    box-sizing: border-box;
+}

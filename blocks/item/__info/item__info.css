@@ -1,0 +1,7 @@
+.item__info {
+    display: flex;
+    max-width: 246px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 15px 0 21px;
+}
