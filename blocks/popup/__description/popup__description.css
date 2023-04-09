@@ -16,3 +16,9 @@
     width: 358px;
     padding-top: 30px;
 }
+
+@media (max-width: 600px) {
+    .popup__description {
+        width: 238px;
+    }
+  }

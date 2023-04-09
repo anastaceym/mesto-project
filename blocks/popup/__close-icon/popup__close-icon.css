@@ -14,3 +14,13 @@
 .popup__close-icon:hover {
     opacity: 0.6;
 }
+
+@media (max-width: 600px) {
+    .popup__close-icon {
+        background-image: url(../../../images/Close-Icon-320.png);
+        width: 20px;
+        height: 20px;
+        top: -30px;
+        right: -2px;
+    }
+  }
