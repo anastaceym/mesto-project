@@ -21,68 +21,52 @@
             <img class="profile__image" src="./images/me_and_cat-avatar.jpg" alt="Фото профиля">
             <div class="profile__info">
                 <h1 class="profile__name">Pets at home be like</h1>
-                <button class="profile__edit-button"></button>
+                <button aria-label="edit" type="button" class="profile__edit-button"></button>
                 <p class="profile__description">Знакомьтесь, наши питомцы</p>
             </div>
-            <button class="profile__renew-content"></button>
+            <button aria-label="add" type="button" class="profile__renew-content"></button>
         </section>
         <section class="elements">
-            <div class="element">
-                <div class="element__group">
-                    <div class="item">
-                        <img class="item__picture" src="./images/brabanson-little.jpg"
-                            alt="Изображение маленького брабансона">
-                    </div>
-                    <div class="item__info">
-                        <h2 class="item__name">Лизунька</h2>
-                        <button class="item__like"></button>
-                    </div>
+            <div class="elements__group">
+                <img class="elements__picture" src="./images/brabanson-little.jpg" alt="Изображение маленького брабансона">
+                <div class="elements__info">
+                    <h2 class="elements__name">Лизунька</h2>
+                    <button aria-label="like" type="button" class="elements__like"></button>
                 </div>
-                <div class="element__group">
-                    <div class="item">
-                        <img class="item__picture" src="./images/dog__image.jpg" alt="Изображение стаффорда">
-                    </div>
-                    <div class="item__info">
-                        <h2 class="item__name">Маркусон</h2>
-                        <button class="item__like item__like_active"></button>
-                    </div>
+            </div>
+            <div class="elements__group">
+                <img class="elements__picture" src="./images/dog__image.jpg" alt="Изображение стаффорда">
+                <div class="elements__info">
+                    <h2 class="elements__name">Маркусон</h2>
+                    <button aria-label="like" type="button" class="elements__like elements__like_active"></button>
                 </div>
-                <div class="element__group">
-                    <div class="item">
-                        <img class="item__picture" src="./images/adult-brabanson.jpg"
-                            alt="Изображение взрослого брабансона">
-                    </div>
-                    <div class="item__info">
-                        <h2 class="item__name">Васька</h2>
-                        <button class="item__like"></button>
-                    </div>
+            </div>
+            <div class="elements__group">
+                <img class="elements__picture" src="./images/adult-brabanson.jpg" alt="Изображение взрослого брабансона">
+                <div class="elements__info">
+                    <h2 class="elements__name">Васька</h2>
+                    <button aria-label="like" type="button" class="elements__like"></button>
                 </div>
-                <div class="element__group">
-                    <div class="item">
-                        <img class="item__picture" src="./images/pincher__image.jpg" alt="Изображение пинчера">
-                    </div>
-                    <div class="item__info">
-                        <h2 class="item__name">Любанька</h2>
-                        <button class="item__like item__like_active"></button>
-                    </div>
+            </div>
+            <div class="elements__group">
+                <img class="elements__picture" src="./images/pincher__image.jpg" alt="Изображение пинчера">
+                <div class="elements__info">
+                    <h2 class="elements__name">Любанька</h2>
+                    <button aria-label="like" type="button" class="elements__like elements__like_active"></button>
                 </div>
-                <div class="element__group">
-                    <div class="item">
-                        <img class="item__picture" src="./images/cat__image.jpg" alt="Изображение британского кота">
-                    </div>
-                    <div class="item__info">
-                        <h2 class="item__name">Блунька</h2>
-                        <button class="item__like"></button>
-                    </div>
+            </div>
+            <div class="elements__group">
+                <img class="elements__picture" src="./images/cat__image.jpg" alt="Изображение британского кота">
+                <div class="elements__info">
+                    <h2 class="elements__name">Блунька</h2>
+                    <button aria-label="like" type="button" class="elements__like"></button>
                 </div>
-                <div class="element__group">
-                    <div class="item">
-                        <img class="item__picture" src="./images/little-chihua.jpg" alt="Изображение чихуа-хуа">
-                    </div>
-                    <div class="item__info">
-                        <h2 class="item__name">Дунька</h2>
-                        <button class="item__like item__like_active"></button>
-                    </div>
+            </div>
+            <div class="elements__group">
+                <img class="elements__picture" src="./images/little-chihua.jpg" alt="Изображение чихуа-хуа">
+                <div class="elements__info">
+                    <h2 class="elements__name">Дунька</h2>
+                    <button aria-label="like" type="button" class="elements__like elements__like_active"></button>
                 </div>
             </div>
         </section>
@@ -92,14 +76,14 @@
     </footer>
     <div class="popup">
         <div class="popup__content">
-            <button class="popup__close-icon"></button>
-            <form action="#" class="popup__panel">
+            <button aria-label="close" type="button" class="popup__close-icon"></button>
+            <form name="changes" action="#" class="popup__panel">
                 <h2 class="popup__heading">Редактировать профиль</h2>
-                <input class="popup__name" type="text" name="field-1" placeholder="Имя пользователя"
+                <input class="popup__input popup__input_theme_name" type="text" name="field-1" placeholder="Имя пользователя"
                     value="Pets at home be like">
-                <input class="popup__description" type="text" name="field-2" placeholder="Описание контента"
+                <input class="popup__input popup__input_theme_description" type="text" name="field-2" placeholder="Описание контента"
                     value="Знакомьтесь, наши питомцы">
-                <button class="popup__save">Сохранить</button>
+                <button type="button" class="popup__save">Сохранить</button>
             </form>
         </div>
     </div>

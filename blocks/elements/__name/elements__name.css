@@ -1,5 +1,6 @@
-.item__name {
+.elements__name {
     margin: 0;
+    max-width: 202px;
     color: #000;
     font-weight: 900;
     font-size: 24px;

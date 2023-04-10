@@ -1,6 +1,7 @@
 .popup__panel {
     margin: 0 auto;
     width: 430px;
+    height: 330px;
     padding-left: 36px;
     box-sizing: border-box;
 }
@@ -8,6 +9,7 @@
 @media (max-width: 600px) {
     .popup__panel {
         width: 282px;
+        height: 322px;
         padding-left: 19px;
     }
   }

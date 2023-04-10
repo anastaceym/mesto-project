@@ -1,6 +1,4 @@
-.element__group {
-    width: 282px;
-    height: 361px;
+.elements__group {
     box-sizing: border-box;
     background-color: #ffff;
     border-radius: 10px;
