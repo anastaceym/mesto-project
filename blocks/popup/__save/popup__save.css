@@ -9,7 +9,7 @@
     background-color: #000;
     color: #fff;
     border-radius: 2px;
-    margin: 48px 0 37px 0;
+    margin: 45px 0 37px 0;
     cursor: pointer;
 }
 
@@ -20,9 +20,8 @@
 @media (max-width: 600px) {
     .popup__save {
         width: 238px;
-        height: 46px;
         font-size: 14px;
         line-height: 17px;
-        margin: 45px 0 25px 0;
+        margin: 35px 0 25px 0;
     }
   }
