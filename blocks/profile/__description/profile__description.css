@@ -20,6 +20,9 @@
   
   @media (max-width: 600px) {
     .profile__description {
-        max-width: 100%;
+        max-width: 80%;
+        grid-column: 1/3;
+        text-align: center;
+        margin: 0 auto;
     }
   }
