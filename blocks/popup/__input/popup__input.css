@@ -13,16 +13,16 @@
     white-space: nowrap;
     display: block;
     width: 358px;
-    padding-top: 54px;
+    margin-top: 54px;
 }
 
 .popup__input:last-of-type {
-    padding-top: 30px;
+    margin-top: 30px;
 }
 
 @media (max-width: 600px) {
     .popup__input {
         width: 238px;
-        padding-top: 75px;
+        margin-top: 75px;
     }
   }

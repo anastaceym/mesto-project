@@ -5,3 +5,9 @@
     position: relative;
     box-sizing: border-box;
 }
+
+.popup__content-zoom {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: none;
+}

@@ -20,73 +20,66 @@
         <section class="profile">
             <img class="profile__image" src="./images/me_and_cat-avatar.jpg" alt="Фото профиля">
             <div class="profile__info">
-                <h1 class="profile__name">Pets at home be like</h1>
+                <h1 class="profile__name">Anastacey M.</h1>
                 <button aria-label="edit" type="button" class="profile__edit-button"></button>
-                <p class="profile__description">Знакомьтесь, наши питомцы</p>
+                <p class="profile__description">Фанатка невероятных мест</p>
             </div>
             <button aria-label="add" type="button" class="profile__renew-content"></button>
         </section>
-        <section class="elements">
-            <div class="elements__group">
-                <img class="elements__picture" src="./images/brabanson-little.jpg" alt="Изображение маленького брабансона">
-                <div class="elements__info">
-                    <h2 class="elements__name">Лизунька</h2>
-                    <button aria-label="like" type="button" class="elements__like"></button>
-                </div>
-            </div>
-            <div class="elements__group">
-                <img class="elements__picture" src="./images/dog__image.jpg" alt="Изображение стаффорда">
-                <div class="elements__info">
-                    <h2 class="elements__name">Маркусон</h2>
-                    <button aria-label="like" type="button" class="elements__like elements__like_active"></button>
-                </div>
-            </div>
-            <div class="elements__group">
-                <img class="elements__picture" src="./images/adult-brabanson.jpg" alt="Изображение взрослого брабансона">
-                <div class="elements__info">
-                    <h2 class="elements__name">Васька</h2>
-                    <button aria-label="like" type="button" class="elements__like"></button>
-                </div>
-            </div>
-            <div class="elements__group">
-                <img class="elements__picture" src="./images/pincher__image.jpg" alt="Изображение пинчера">
-                <div class="elements__info">
-                    <h2 class="elements__name">Любанька</h2>
-                    <button aria-label="like" type="button" class="elements__like elements__like_active"></button>
-                </div>
-            </div>
-            <div class="elements__group">
-                <img class="elements__picture" src="./images/cat__image.jpg" alt="Изображение британского кота">
-                <div class="elements__info">
-                    <h2 class="elements__name">Блунька</h2>
-                    <button aria-label="like" type="button" class="elements__like"></button>
-                </div>
-            </div>
-            <div class="elements__group">
-                <img class="elements__picture" src="./images/little-chihua.jpg" alt="Изображение чихуа-хуа">
-                <div class="elements__info">
-                    <h2 class="elements__name">Дунька</h2>
-                    <button aria-label="like" type="button" class="elements__like elements__like_active"></button>
-                </div>
-            </div>
-        </section>
+        <section class="elements"></section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2023 Анастасия Москалёва</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup-submit">
         <div class="popup__content">
             <button aria-label="close" type="button" class="popup__close-icon"></button>
+            <h2 class="popup__heading">Редактировать профиль</h2>
             <form name="changes" action="#" class="popup__panel">
-                <h2 class="popup__heading">Редактировать профиль</h2>
-                <input class="popup__input popup__input_theme_name" type="text" name="field-1" placeholder="Имя пользователя"
-                    value="Pets at home be like">
-                <input class="popup__input popup__input_theme_description" type="text" name="field-2" placeholder="Описание контента"
-                    value="Знакомьтесь, наши питомцы">
+                <input class="popup__input popup__input_theme_name" type="text" name="field-name" placeholder="Имя пользователя"
+                    value="">
+                <input class="popup__input popup__input_theme_description" type="text" name="field-content" placeholder="Описание контента"
+                    value="">
                 <button type="submit" class="popup__save">Сохранить</button>
             </form>
         </div>
     </div>
+    <div class="popup popup-adding">
+        <div class="popup__content">
+            <button aria-label="close" type="button" class="popup__close-icon popup__close-icon-adding"></button>
+            <h2 class="popup__heading">Новое место</h2>
+            <form name="changes" action="#" class="popup__panel">
+                <input class="popup__input popup__input_theme_name popup__input_theme_name-adding" type="text" name="field-name" placeholder="Название"
+                    value="">
+                <input class="popup__input popup__input_theme_description popup__input_theme_description-adding" type="text" name="field-content" placeholder="Ссылка на картинку"
+                    value="">
+                <button type="submit" class="popup__save popup__save-adding">Создать</button>
+            </form>
+        </div>
+    </div>
+    <template id="card-template">
+        <article class="elements__group">
+            <button aria-label="bin" type="button" class="elements__card-bin"></button>
+            <img class="elements__picture" src="" alt="">
+            <div class="elements__info">
+                <h2 class="elements__name"></h2>
+                <button aria-label="like" type="button" class="elements__like"></button>
+            </div>
+        </article>
+    </template>
+
+    <div class="popup popup-zoom">
+        <div class="popup__content popup__content-zoom">
+            <button aria-label="close" type="button" class="popup__close-icon popup__close-icon-zoom"></button>
+            <figure class="popup__zoom">
+                <img class="popup__image" src="" alt="Изображение контента страницы">
+                <figcaption class="popup__caption"></figcaption>
+              </figure>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+    
 </body>
 
 </html>

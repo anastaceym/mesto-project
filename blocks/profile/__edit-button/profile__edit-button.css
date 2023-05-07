@@ -10,6 +10,7 @@
     background-position: 50%;
     grid-column: 2/3;
     align-self: center;
+    margin-left: auto;
 }
 
 .profile__edit-button:hover {
