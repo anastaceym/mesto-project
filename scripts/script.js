@@ -1,6 +1,6 @@
-const popupElement = document.querySelector(".popup");
+const popupProfile = document.querySelector(".popup");
 const popupEditButton = document.querySelector(".profile__edit-button");
-const popupCloseButton = document.querySelector(".popup__close-icon");
+const popupCloseButtons = document.querySelectorAll(".popup__close-icon");
 const cardsContainer = document.querySelector(".elements");
 const popupAddingButton = document.querySelector(".profile__renew-content");
 const popupHeading = document.querySelector(".popup__heading");
@@ -26,35 +26,31 @@ const buttonSubmit = document.querySelector('.popup-submit');
 //добавляем класс переменной и функцию открытия попапа редактирования профиля и добавления контента
 
 //попап для профиля
-function openPopup(popupElement) {
-  popupElement.classList.add("popup_opened");
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
 }
 popupEditButton.addEventListener("click", function () {
-  openPopup(popupElement);
+  openPopup(popupProfile);
   popupInputName.value = profileName.textContent;
   popupInputDescription.value = profileDescription.textContent;
 });
 
 //добавляем функцию закрытия попапа
-function closePopup(popupElement) {
-  popupElement.classList.remove("popup_opened");
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
 }
-popupCloseButton.addEventListener("click", function () {
-  closePopup(popupElement);
-});
+
 
 //попап для контента
 popupAddingButton.addEventListener("click", function () {
   openPopup(popupAddingElement);
 });
 
-//добавляем функцию закрытия попапа
-function closePopup(popupAddingElement) {
-  popupAddingElement.classList.remove("popup_opened");
-}
-popupCloseAddingButton.addEventListener("click", function () {
-  closePopup(popupAddingElement);
-});
+// функция закрытия попапа
+popupCloseButtons.forEach(button => {
+  const buttonsPopup = button.closest('.popup'); 
+  button.addEventListener('click', () => closePopup(buttonsPopup)); 
+}); 
 
 //изменение инфо профиля
 function changeProfile(evt) {
@@ -65,42 +61,16 @@ function changeProfile(evt) {
   popupInputName.value = "";
   popupInputDescription.value = "";
 
-  closePopup(popupElement);
+  closePopup(popupProfile);
 }
 
 //сохраняем изменения 
 buttonSubmit.addEventListener("submit", changeProfile);
 
-//массив
-const initialCards = [
-  {
-    name: "Новая Зеландия",
-    link: "https://images.unsplash.com/photo-1528287942171-fbe365d1d9ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
-  },
-  {
-    name: "Греция",
-    link: "https://images.unsplash.com/photo-1571406252262-61dbac780447?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-  },
-  {
-    name: "Индонезия",
-    link: "https://images.unsplash.com/photo-1682321296984-42170361c920?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-  },
-  {
-    name: "Германия",
-    link: "https://images.unsplash.com/photo-1449452198679-05c7fd30f416?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  },
-  {
-    name: "Китай",
-    link: "https://images.unsplash.com/photo-1556880003-4fcd06418af3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-  },
-  {
-    name: "Сингапур",
-    link: "https://images.unsplash.com/photo-1605425183435-25b7e99104a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2864&q=80",
-  },
-];
 
 // функция создания карточек
-function createCard(name, link) {
+function createCard(cardData) {
+  const { name, link } = cardData;
   const cardElement = cardTemplate
     .querySelector(".elements__group")
     .cloneNode(true);
@@ -108,7 +78,8 @@ function createCard(name, link) {
   const cardName = cardElement.querySelector(".elements__name");
   cardName.textContent = name;
   cardPicture.src = link;
-  cardsContainer.prepend(cardElement);
+  cardPicture.alt = name;
+
 
   //удаление карточек
   const cardDeleteButton = cardElement.querySelector(".elements__card-bin");
@@ -126,15 +97,22 @@ function createCard(name, link) {
     // стрелочная функция для увеличения карточек
   cardPicture.addEventListener('click', () => zoomCardImage(name, link));
 
+  return cardElement;
+}
+
+function renderCard(cardData, container) {
+  container.prepend(createCard(cardData));
 }
 
 initialCards.forEach((card) => {
-  createCard(card.name, card.link);
+  renderCard(card, cardsContainer);
 });
 
 //функция добавления карточек
 function changeCards(evt) {
-  createCard(nameAddNewCard.value, linkAddNewCard.value);
+const cardObj = { name: nameAddNewCard.value, link: linkAddNewCard.value };
+const newCard = createCard(cardObj);
+  renderCard(cardObj, cardsContainer);
   evt.preventDefault();
 
   nameAddNewCard.value = "";
@@ -150,8 +128,6 @@ function zoomCardImage(name, link) {
   openPopup(cardPopupOpenZoom);
  popupImageName.textContent = name;
  popupImageLink.src = link;
+ popupImageLink.alt = name;
  }
 
- cardPopupCloseZoom.addEventListener("click", function () {
-  closePopup(cardPopupOpenZoom);
-});
