@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
       name: "Новая Зеландия",
       link: "https://images.unsplash.com/photo-1528287942171-fbe365d1d9ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
@@ -25,3 +25,22 @@ const initialCards = [
     },
   ];
   
+ export const cardPopupOpenZoom = document.querySelector(".popup-zoom");
+ export const popupImageName = document.querySelector('.popup__caption');
+ export const popupImageLink = document.querySelector('.popup__image');
+ export const cardTemplate = document.querySelector("#card-template").content;
+ export const nameAddNewCard = document.querySelector(".popup__input_theme_name-adding");
+ export const linkAddNewCard = document.querySelector(".popup__input_theme_description-adding");
+ export const cardsContainer = document.querySelector(".elements");
+ export const popupAddingElement = document.querySelector(".popup-adding");
+
+ 
+
+ export const validationConfig = {
+  formSelector: '.popup__panel',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__save_disabled',
+  inputErrorClass: 'popup__input_type_error', //red line
+  errorClass: 'popup__error_visible'
+};

@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Проект "Mesto"</title>
     <meta name="description" content="Brief4 for Yandex.Practicum" />
     <meta name="keywords" content="yandex, Mesto, website, project" />
@@ -14,11 +13,11 @@
 
 <body class="page">
     <header class="header">
-        <img class="header__logo" src="./images/logo-mesto.svg" alt="Логотип Mesto">
+        <img class="header__logo" src="<%=require('./images/logo-mesto.svg')%>" alt="Логотип Mesto">
     </header>
     <main class="main">
         <section class="profile">
-            <img class="profile__image" src="./images/me_and_cat-avatar.jpg" alt="Фото профиля">
+            <img class="profile__image" src="<%=require('./images/me_and_cat-avatar.jpg')%>" alt="Фото профиля">
             <div class="profile__info">
                 <h1 class="profile__name">Anastacey M.</h1>
                 <button aria-label="edit" type="button" class="profile__edit-button"></button>
@@ -35,12 +34,14 @@
         <div class="popup__content">
             <button aria-label="close" type="button" class="popup__close-icon"></button>
             <h2 class="popup__heading">Редактировать профиль</h2>
-            <form name="changes" action="#" class="popup__panel">
-                <input class="popup__input popup__input_theme_name" type="text" name="field-name" placeholder="Имя пользователя"
-                    value="">
-                <input class="popup__input popup__input_theme_description" type="text" name="field-content" placeholder="Описание контента"
-                    value="">
-                <button type="submit" class="popup__save">Сохранить</button>
+            <form name="changes" action="#" class="popup__panel" novalidate>
+                <input class="popup__input  popup__input_theme_name" id="name-input" type="text" name="field-name" placeholder="Имя пользователя"
+                    value="" minlength="2" maxlength="40" required>
+                    <span class="popup__error" id="name-input-error"></span>
+                <input class="popup__input popup__input_theme_description" id="description-input" type="text" name="field-content" placeholder="Описание контента"
+                    value="" minlength="2" maxlength="200" required>
+                    <span class="popup__error" id="description-input-error"></span>
+                <button type="submit" class="popup__save" disabled>Сохранить</button>
             </form>
         </div>
     </div>
@@ -48,12 +49,14 @@
         <div class="popup__content">
             <button aria-label="close" type="button" class="popup__close-icon popup__close-icon-adding"></button>
             <h2 class="popup__heading">Новое место</h2>
-            <form name="changes" action="#" class="popup__panel">
-                <input class="popup__input popup__input_theme_name popup__input_theme_name-adding" type="text" name="field-name" placeholder="Название"
-                    value="">
-                <input class="popup__input popup__input_theme_description popup__input_theme_description-adding" type="text" name="field-content" placeholder="Ссылка на картинку"
-                    value="">
-                <button type="submit" class="popup__save popup__save-adding">Создать</button>
+            <form name="changes" action="#" class="popup__panel" novalidate>
+                <input class="popup__input  popup__input_theme_name popup__input_theme_name-adding" id="adding-name-input" type="text" name="field-name" placeholder="Название"
+                    value="" minlength="2" maxlength="30" required>
+                    <span class="popup__error" id="adding-name-input-error"></span>
+                <input class="popup__input popup__input_theme_description popup__input_theme_description-adding" id="adding-description-input" type="url" name="field-content" placeholder="Ссылка на картинку"
+                    value="" required>
+                    <span class="popup__error" id="adding-description-input-error"></span>
+                <button type="submit" class="popup__save popup__save-adding" disabled>Создать</button>
             </form>
         </div>
     </div>
@@ -77,8 +80,6 @@
               </figure>
         </div>
     </div>
-    <script src="./scripts/cards.js"></script>
-    <script src="./scripts/script.js"></script>
     
 </body>
 
