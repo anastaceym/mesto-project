@@ -68,8 +68,7 @@ buttonSubmit.addEventListener("submit", changeProfile);
 // функция создания карточек
  function changeCards(evt) {
   const cardObj = { name: nameAddNewCard.value, link: linkAddNewCard.value };
-  const newCard = createCard(cardObj);
-    renderCard(newCard, cardsContainer);
+    renderCard(cardObj, cardsContainer);
     evt.preventDefault();
   
     nameAddNewCard.value = "";

@@ -25,9 +25,9 @@ export function openPopup(popup) {
   }
 
   function closePopupOnOverlay(evt) {
-    if (evt.target.classList.contains('popup-overlay')) {
-      const overlay = document.querySelector('.popup-overlay');
-      closePopup(overlay)
+    console.log(evt.target)
+    if (evt.target.classList.contains('popup_opened')) {
+      evt.target.classList.remove('popup_opened');
     }
   }
  

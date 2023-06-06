@@ -10,6 +10,9 @@
     border: 1px solid;
     margin: 40px 0 35px 0;
     cursor: pointer;
+    background-color: transparent;
+    color: #000;
+    opacity: 0.2;
 }
 
 
