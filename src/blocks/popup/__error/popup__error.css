@@ -1,4 +1,6 @@
 .popup__error {
+    display: block;
+    min-height: 30px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -6,9 +8,16 @@
     line-height: 15px;
     color: #FF0000;
     opacity: 0; 
-
+    width: 358px;
+    padding-top: 5px;
 }
 
 .popup__error_visible {
     opacity: 1;
 }
+
+@media (max-width: 600px) {
+    .popup__error {
+        width: 238px;
+    }
+  }

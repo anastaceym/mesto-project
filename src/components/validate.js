@@ -1,10 +1,9 @@
+import { disableButton } from "./utils";
+
 export function enableValidation (config) {
     const { formSelector } = config; //деструктуризация
     const formList = Array.from(document.querySelectorAll(formSelector));
     formList.forEach((formElement) => {
-      formElement.addEventListener("submit", function (evt) {
-        evt.preventDefault();
-      });
       setEventListener(formElement, config);
     });
   };
@@ -40,8 +39,7 @@ export function enableValidation (config) {
   function toggleButtonState (inputList, buttonElement, config){
     const {inactiveButtonClass} = config;
   if (hasInvalidInput(inputList)) {
-    buttonElement.disabled = true;
-    buttonElement.classList.add(inactiveButtonClass);
+    disableButton(buttonElement, config)
   } else {
     buttonElement.disabled = false;
     buttonElement.classList.remove(inactiveButtonClass);

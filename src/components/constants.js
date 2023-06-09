@@ -33,7 +33,9 @@ export const initialCards = [
  export const linkAddNewCard = document.querySelector(".popup__input_theme_description-adding");
  export const cardsContainer = document.querySelector(".elements");
  export const popupAddingElement = document.querySelector(".popup-adding");
-
+ export const popupCloseButtons = document.querySelectorAll(".popup__close-icon");
+ export const popupAddingSaveButton = document.querySelector(".popup__save-adding");
+ export const popupSaveButton = document.querySelector(".popup__save");
  
 
  export const validationConfig = {

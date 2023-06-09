@@ -14,6 +14,7 @@
     display: block;
     width: 358px;
     margin-top: 54px;
+    min-height: 30px;
 }
 
 .popup__input:last-of-type {

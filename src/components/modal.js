@@ -1,13 +1,13 @@
-import { cardPopupOpenZoom, popupImageName, popupImageLink } from './constants';
+import { cardPopupOpenZoom, popupImageName, popupImageLink, popupCloseButtons } from './constants';
 
 export function openPopup(popup) {
     popup.classList.add("popup_opened");
     document.addEventListener('keydown', closePopupOnEsc);
-    document.addEventListener('click', closePopupOnOverlay);
   }
 
  export function closePopup(popup) {
     popup.classList.remove("popup_opened");
+    document.removeEventListener('keydown', closePopupOnEsc);
   }
 
  export function zoomCardImage(name, link) {
@@ -25,9 +25,15 @@ export function openPopup(popup) {
   }
 
   function closePopupOnOverlay(evt) {
-    console.log(evt.target)
     if (evt.target.classList.contains('popup_opened')) {
-      evt.target.classList.remove('popup_opened');
+      closePopup(evt.target);
     }
   }
  
+// функция закрытия попапа
+popupCloseButtons.forEach(button => {
+  const buttonsPopup = button.closest('.popup'); 
+  button.addEventListener('click', () => closePopup(buttonsPopup)); 
+}); 
+
+document.addEventListener('click', closePopupOnOverlay);
