@@ -34,6 +34,6 @@ export function openPopup(popup) {
 popupCloseButtons.forEach(button => {
   const buttonsPopup = button.closest('.popup'); 
   button.addEventListener('click', () => closePopup(buttonsPopup)); 
+  buttonsPopup.addEventListener('click', closePopupOnOverlay);
 }); 
 
-document.addEventListener('click', closePopupOnOverlay);
