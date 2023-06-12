@@ -8,10 +8,19 @@
     text-align: center;
     border-radius: 2px;
     border: 1px solid;
-    margin: 40px 0 35px 0;
+    margin: 30px 0 35px 0;
     background-color: transparent;
     color: #C4C4C4;
     cursor: auto;
 }
+
+@media (max-width: 600px) {
+    .popup__save_disabled {
+        width: 238px;
+        font-size: 14px;
+        line-height: 17px;
+        margin: 25px 0 25px 0;
+    }
+  }
 
 

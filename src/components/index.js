@@ -76,7 +76,37 @@ cardSaveButton.addEventListener("click", changeCards);
 
 enableValidation(validationConfig);
 
+//  Запрос к серверу
+// return fetch('https:///mesto.nomoreparties.co/v1/plus-cohort-25/cards', {
+//   headers: {
+//     authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4'
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
 
+// Загрузка информации о пользователе с сервера
+// GET https:///mesto.nomoreparties.co/v1/plus-cohort-25/users/me
 
+// Загрузка карточек с сервера
+// GET https:///mesto.nomoreparties.co/v1/plus-cohort-25/cards
 
+// Редактирование профиля
+// PATCH https:///mesto.nomoreparties.co/v1/plus-cohort-25/users/me
 
+// fetch('https://mesto.nomoreparties.co/v1/plus-cohort-25/users/me', {
+//   method: 'PATCH',
+//   headers: {
+//     authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4',
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({
+//     name: 'Anastasia M',
+//     about: 'Fan of travelling'
+//   })
+// });
+
+// Добавление новой карточки
+// POST https:///mesto.nomoreparties.co/v1/plus-cohort-25/cards
