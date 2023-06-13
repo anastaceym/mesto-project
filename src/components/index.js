@@ -18,9 +18,27 @@ const cardSaveButton = document.querySelector(".popup__save-adding");
 const cardPopupCloseZoom = document.querySelector(".popup__close-icon-zoom");
 const buttonSubmit = document.querySelector('.popup-submit');
 
+//для аватара и попапа к нему
+const popupAvatar = document.querySelector(".popup-image-updating");
+const popupButtonAvatar = document.querySelector(".profile__image-button");
+const avatarSaveButon = document.querySelector(".popup__save-image-updating");
+const avatarInputLink = document.querySelector(".popup__input_theme_description-image-updating");
+const profileAvatar = document.querySelector(".profile__image");
+
+//попап для изменения аватарки профиля
+popupButtonAvatar.addEventListener("click", function () {
+  openPopup(popupAvatar);
+});
+
+function changeAvatarProfile(evt) {
+  evt.preventDefault();
+  avatarInputLink.scr = profileAvatar.value;
+  profileAvatar.value = "";
+}
+
+avatarSaveButon.addEventListener("submit", changeAvatarProfile);
 
 //попап для профиля
-
 popupEditButton.addEventListener("click", function () {
   openPopup(popupProfile);
   popupInputName.value = profileName.textContent;
@@ -75,6 +93,7 @@ cardSaveButton.addEventListener("click", changeCards);
 
 
 enableValidation(validationConfig);
+
 
 //  Запрос к серверу
 // return fetch('https:///mesto.nomoreparties.co/v1/plus-cohort-25/cards', {

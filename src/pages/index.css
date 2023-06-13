@@ -35,3 +35,6 @@
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/_type/popup__input_type_error.css);
 @import url(../blocks/popup/_disabled/popup__save_disabled.css);
+@import url(../blocks/elements/__like-number/elements__like-number.css);
+@import url(../blocks/elements/group-like/elements__group-like.css);
+@import url(../blocks/profile/__image-button/profile__image-button.css);
