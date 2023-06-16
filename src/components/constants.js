@@ -37,6 +37,24 @@ export const initialCards = [
  export const popupAddingSaveButton = document.querySelector(".popup__save-adding");
  export const popupSaveButton = document.querySelector(".popup__save");
 
+ export const popupProfile = document.querySelector(".popup");
+ export const popupEditButton = document.querySelector(".profile__edit-button");
+ export const popupAddingButton = document.querySelector(".profile__renew-content");
+ export const popupInputName = document.querySelector(".popup__input_theme_name");
+ export const popupInputDescription = document.querySelector(".popup__input_theme_description");
+ export const profileName = document.querySelector(".profile__name");
+ export const profileDescription = document.querySelector(".profile__description");
+ export const cardSubmit = document.querySelector('.popup__panel-cards');
+ export const profileSubmit = document.querySelector('.popup__panel-profile');
+
+ //для аватара и попапа к нему
+ export const popupAvatar = document.querySelector(".popup-image-updating");
+ export const popupButtonAvatar = document.querySelector(".profile__image-button");
+ export const avatarSaveButon = document.querySelector(".popup__save-image-updating");
+ export const avatarInputLink = document.querySelector(".popup__input_theme_description-image-updating");
+ export const profileAvatar = document.querySelector(".profile__image");
+ export const avatarForm = document.querySelector(".popup__panel_type_profile-image");
+
  export const validationConfig = {
   formSelector: '.popup__panel',
   inputSelector: '.popup__input',

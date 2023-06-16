@@ -1,28 +1,12 @@
 import '../pages/index.css';
-import { cardsContainer, popupAddingElement, validationConfig, nameAddNewCard, linkAddNewCard, popupAddingSaveButton, popupSaveButton } from './constants';
+import { cardsContainer, popupAddingElement, validationConfig, nameAddNewCard, linkAddNewCard, popupEditButton, popupAddingButton, popupInputName, popupInputDescription, profileName, profileDescription, cardSubmit, popupAddingSaveButton, popupSaveButton, profileSubmit, popupProfile, popupAvatar, popupButtonAvatar, avatarSaveButon, avatarInputLink, profileAvatar, avatarForm } from './constants';
 import { openPopup, closePopup } from './modal';
 import { renderCard, disableButton, formLoading } from './utils';
 import { enableValidation } from './validate';
 import { getUser, editProfileInfo, changeAvatar, getInitialCards, addCards, deleteCards, addLike, removeLike } from './api';
 import './api'
 
-const popupProfile = document.querySelector(".popup");
-const popupEditButton = document.querySelector(".profile__edit-button");
-const popupAddingButton = document.querySelector(".profile__renew-content");
-const popupInputName = document.querySelector(".popup__input_theme_name");
-const popupInputDescription = document.querySelector(".popup__input_theme_description");
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-const cardSaveButton = document.querySelector(".popup__save-adding");
-const buttonSubmit = document.querySelector('.popup-submit');
 
-//для аватара и попапа к нему
-const popupAvatar = document.querySelector(".popup-image-updating");
-const popupButtonAvatar = document.querySelector(".profile__image-button");
-const avatarSaveButon = document.querySelector(".popup__save-image-updating");
-const avatarInputLink = document.querySelector(".popup__input_theme_description-image-updating");
-const profileAvatar = document.querySelector(".profile__image");
-const avatarForm = document.querySelector(".popup__panel_type_profile-image");
 
 let userID = null;
 
@@ -31,19 +15,12 @@ popupButtonAvatar.addEventListener("click", function () {
   openPopup(popupAvatar);
 });
 
-
-
 //попап для профиля
 popupEditButton.addEventListener("click", function () {
   openPopup(popupProfile);
   popupInputName.value = profileName.textContent;
   popupInputDescription.value = profileDescription.textContent;
 });
-
-
-
-
-
 
 
    Promise.all([ getUser(), getInitialCards()]).then(([userData, cards]) => {
@@ -54,8 +31,11 @@ popupEditButton.addEventListener("click", function () {
 
     cards.reverse().forEach((card) => {
       renderCard(card, cardsContainer, userID, toggleLike, deleteCard);
-    });
-  });
+    })
+  })
+  .catch((err) => {
+    console.log(err)
+  })
  
   
 // функция создания карточек
@@ -70,12 +50,13 @@ popupEditButton.addEventListener("click", function () {
         console.log(evt.submitter);
         disableButton(popupAddingSaveButton, validationConfig);
         closePopup(popupAddingElement);
+        cardSubmit.reset();
     })
     .catch((err) => console.log(err))
     .finally(() => formLoading(popupAddingSaveButton, false));
   }
 
-cardSaveButton.addEventListener("click", changeCards);
+cardSubmit.addEventListener("click", changeCards);
 
 //изменение инфо профиля
 function changeProfile(evt) {
@@ -99,7 +80,7 @@ popupAddingButton.addEventListener("click", function () {
 });
 
 //сохраняем изменения 
-buttonSubmit.addEventListener("submit", changeProfile);
+profileSubmit.addEventListener("submit", changeProfile);
 
 function changeAvatarProfile(evt) {
   evt.preventDefault();
@@ -108,6 +89,7 @@ function changeAvatarProfile(evt) {
   changeAvatar({ avatar: avatarInputLink.value}).then((editData) => {
     profileAvatar.src = editData.avatar;
     closePopup(popupAvatar);
+    avatarForm.reset();
   })
   .catch((err) => console.log(err))
   .finally(() => formLoading(avatarSaveButon, false));
