@@ -14,6 +14,7 @@
     cursor: auto;
 }
 
+
 @media (max-width: 600px) {
     .popup__save_disabled {
         width: 238px;

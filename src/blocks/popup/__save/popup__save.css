@@ -17,6 +17,10 @@
     opacity: 0.8;
 }
 
+.popup__save-image-updating {
+    margin: 48px 0 36px 0;
+}
+
 @media (max-width: 600px) {
     .popup__save {
         width: 238px;

@@ -175,7 +175,7 @@
           class="popup__close-icon popup__close-image-updating"
         ></button>
         <h2 class="popup__heading">Обновить аватар</h2>
-        <form name="changes" action="#" class="popup__panel" novalidate>
+        <form name="changes" action="#" class="popup__panel popup__panel_type_profile-image" novalidate>
           <input
             class="popup__input popup__input_theme_description-image-updating"
             id="image-updating-description-input"
@@ -186,15 +186,11 @@
             required
           />
           <span
-            class="popup__error"
+            class="popup__error popup__error-image-updating"
             id="image-updating-description-input-error"
           ></span>
-          <button
-            type="submit"
-            class="popup__save popup__save-image-updating"
-            disabled
-          >
-            Создать
+          <button type="submit" class="popup__save popup__save-image-updating">
+            Сохранить
           </button>
         </form>
       </div>

@@ -16,6 +16,10 @@
     opacity: 1;
 }
 
+.popup__error-image-updating {
+    min-height: 10px;
+}
+
 @media (max-width: 600px) {
     .popup__error {
         width: 238px;

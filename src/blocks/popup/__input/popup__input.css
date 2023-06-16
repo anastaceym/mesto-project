@@ -21,6 +21,13 @@
     margin-top: 13px;
 }
 
+.popup__input_theme_description-image-updating {
+    min-height: 10px;
+}
+.popup__input_theme_description-image-updating:last-of-type {
+    margin-top: 48px;
+}
+
 
 @media (max-width: 600px) {
     .popup__input {

@@ -36,7 +36,6 @@ export const initialCards = [
  export const popupCloseButtons = document.querySelectorAll(".popup__close-icon");
  export const popupAddingSaveButton = document.querySelector(".popup__save-adding");
  export const popupSaveButton = document.querySelector(".popup__save");
- 
 
  export const validationConfig = {
   formSelector: '.popup__panel',
