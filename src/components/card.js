@@ -28,7 +28,7 @@ export function createCard(cardData,  userID, toggleLike, deleteCard) {
    
    const likeButton = cardElement.querySelector(".elements__like")
    const likeNumber = cardElement.querySelector('.elements__like-number');
-   console.log(cardData.likes.length)
+   
    likeNumber.textContent = cardData.likes.length;
    const hasLike = cardData.likes.find(user => user._id = userID);
    if (hasLike) {

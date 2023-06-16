@@ -51,7 +51,7 @@ popupEditButton.addEventListener("click", function () {
     profileDescription.textContent = userData.about;
     profileAvatar.src = userData.avatar;
     userID = userData._id;
-    console.log(cards)
+
     cards.reverse().forEach((card) => {
       renderCard(card, cardsContainer, userID, toggleLike, deleteCard);
     });
