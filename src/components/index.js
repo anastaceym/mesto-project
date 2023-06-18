@@ -56,7 +56,7 @@ popupEditButton.addEventListener("click", function () {
     .finally(() => formLoading(popupAddingSaveButton, false));
   }
 
-cardSubmit.addEventListener("click", changeCards);
+cardSubmit.addEventListener("submit", changeCards);
 
 //изменение инфо профиля
 function changeProfile(evt) {
