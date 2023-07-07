@@ -3,7 +3,7 @@ import { cardsContainer, popupAddingElement, validationConfig, nameAddNewCard, l
 import { openPopup, closePopup } from './modal';
 import { renderCard, disableButton, formLoading } from './utils';
 import { enableValidation } from './validate';
-import { getUser, editProfileInfo, changeAvatar, getInitialCards, addCards, deleteCards, addLike, removeLike } from './api';
+import { getUser, editProfileInfo, changeAvatar, getInitialCards, addCards, deleteCards, addLike, removeLike, Api } from './api';
 import './api'
 
 const config = {
@@ -13,6 +13,8 @@ const config = {
     authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4'
   }
 }
+const api = new Api(config);
+console.log(api)
 
 let userID = null;
 

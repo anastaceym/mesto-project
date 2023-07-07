@@ -2,13 +2,6 @@
 // Я создал ветку для разработки mesto-update из main.
 // Потом создал ветку для тестирования test из mesto-update.
 // Сдела изменения добавиф комментарий и автоматом убрались лишние пробелы.
-const config = {
-  baseUrl: 'https:///mesto.nomoreparties.co/v1/plus-cohort-25',
-  headers: {
-    'content-type': 'application/json',
-    authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4'
-  }
-}
 
 export class Api {
   constructor(config) {
