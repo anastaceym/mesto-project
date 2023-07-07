@@ -1,18 +1,11 @@
 import '../pages/index.css';
-import { cardsContainer, popupAddingElement, validationConfig, nameAddNewCard, linkAddNewCard, popupEditButton, popupAddingButton, popupInputName, popupInputDescription, profileName, profileDescription, cardSubmit, popupAddingSaveButton, popupSaveButton, profileSubmit, popupProfile, popupAvatar, popupButtonAvatar, avatarSaveButon, avatarInputLink, profileAvatar, avatarForm } from './constants';
+import { cardsContainer, popupAddingElement, validationConfig, nameAddNewCard, linkAddNewCard, popupEditButton, popupAddingButton, popupInputName, popupInputDescription, profileName, profileDescription, cardSubmit, popupAddingSaveButton, popupSaveButton, profileSubmit, popupProfile, popupAvatar, popupButtonAvatar, avatarSaveButon, avatarInputLink, profileAvatar, avatarForm, config } from './constants';
 import { openPopup, closePopup } from './modal';
 import { renderCard, disableButton, formLoading } from './utils';
 import { enableValidation } from './validate';
 import { Api } from './api';
 import './api'
 
-const config = {
-  baseUrl: 'https:///mesto.nomoreparties.co/v1/plus-cohort-25',
-  headers: {
-    'content-type': 'application/json',
-    authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4'
-  }
-}
 const api = new Api(config);
 
 let userID = null;

@@ -36,3 +36,11 @@
   inputErrorClass: 'popup__input_type_error', //red line
   errorClass: 'popup__error_visible'
 };
+
+export const config = {
+  baseUrl: 'https:///mesto.nomoreparties.co/v1/plus-cohort-25',
+  headers: {
+    'content-type': 'application/json',
+    authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4'
+  }
+}
