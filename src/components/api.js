@@ -4,73 +4,75 @@
 // Сдела изменения добавиф комментарий и автоматом убрались лишние пробелы.
 
 export class Api {
-  constructor(config) {
-    this._baseUrl = config.baseUrl;
-    this._headers = config.headers;
-  }
-
-  checkResponse(res) {
+  #checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   };
 
+  constructor(config) {
+    this._baseUrl = config.baseUrl;
+    this._headers = config.headers;
+  }
+
+  
+
   getUser(){
-    return fetch(`${baseUrl}/users/me`, {
+    return fetch(`${this._this._baseUrl}/users/me`, {
       headers
-    }).then(checkResponse);
+    }).then(this.#this.#checkResponse);
   };
 
   editProfileInfo(editData){
-    return fetch(`${baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers,
+      headers: this._headers,
       body: JSON.stringify(editData),
-    }).then(checkResponse);
+    }).then(this.#checkResponse);
   };
 
   changeAvatar(editData) {
-    return fetch(`${baseUrl}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers,
+      headers: this._headers,
       body: JSON.stringify(editData),
-    }).then(checkResponse);
+    }).then(this.#checkResponse);
   };
 
   getInitialCards() {
-    return fetch(`${baseUrl}/cards`, {
-      headers,
-    }).then(checkResponse);
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+    }).then(this.#checkResponse);
   };
 
   addCards(inputData) {
-    return fetch(`${baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers,
+      headers: this._headers,
       body: JSON.stringify(inputData),
-    }).then(checkResponse);
+    }).then(this.#checkResponse);
   };
 
   deleteCards(cardID) {
-    return fetch(`${baseUrl}/cards/${cardID}`, {
+    return fetch(`${this._baseUrl}/cards/${cardID}`, {
       method: "DELETE",
-      headers,
-    }).then(checkResponse);
+      headers: this._headers,
+    }).then(this.#checkResponse);
   };
 
   addLike(cardID) {
-    return fetch(`${baseUrl}/cards/likes/${cardID}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
       method: "PUT",
-      headers,
-    }).then(checkResponse);
+      headers: this._headers,
+    }).then(this.#checkResponse);
   };
 
   removeLike (cardID) {
-    return fetch(`${baseUrl}/cards/likes/${cardID}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
       method: "DELETE",
-      headers,
-    }).then(checkResponse);
+      headers: this._headers,
+    }).then(this.#checkResponse);
   };
 
 }
