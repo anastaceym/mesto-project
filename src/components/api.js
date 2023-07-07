@@ -18,7 +18,7 @@ export class Api {
 
   getUser(){
     return fetch(`${this._baseUrl}/users/me`, {
-      headers
+      headers: this._headers,
     }).then(this.#checkResponse);
   };
 
