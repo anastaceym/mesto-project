@@ -16,12 +16,10 @@ export class Api {
     this._headers = config.headers;
   }
 
-  
-
   getUser(){
-    return fetch(`${this._this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers
-    }).then(this.#this.#checkResponse);
+    }).then(this.#checkResponse);
   };
 
   editProfileInfo(editData){
