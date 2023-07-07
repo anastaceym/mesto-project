@@ -2,27 +2,34 @@
 // Я создал ветку для разработки mesto-update из main.
 // Потом создал ветку для тестирования test из mesto-update.
 // Сдела изменения добавиф комментарий и автоматом убрались лишние пробелы.
-
-const baseUrl = 'https:///mesto.nomoreparties.co/v1/plus-cohort-25'
-const headers = {
-  'content-type': 'application/json',
-  authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4'
+const config = {
+  baseUrl: 'https:///mesto.nomoreparties.co/v1/plus-cohort-25',
+  headers: {
+    'content-type': 'application/json',
+    authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4'
+  }
 }
 
-function checkResponse(res) {
+export class Api {
+  constructor(config) {
+    this._baseUrl = config.baseUrl;
+    this._headers = config.headers;
+  }
+
+  checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   };
 
-  export function getUser(){
+  getUser(){
     return fetch(`${baseUrl}/users/me`, {
       headers
     }).then(checkResponse);
   };
 
-  export function editProfileInfo(editData){
+  editProfileInfo(editData){
     return fetch(`${baseUrl}/users/me`, {
       method: "PATCH",
       headers,
@@ -30,7 +37,7 @@ function checkResponse(res) {
     }).then(checkResponse);
   };
 
-  export function changeAvatar(editData) {
+  changeAvatar(editData) {
     return fetch(`${baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers,
@@ -38,13 +45,13 @@ function checkResponse(res) {
     }).then(checkResponse);
   };
 
-  export function getInitialCards() {
+  getInitialCards() {
     return fetch(`${baseUrl}/cards`, {
       headers,
     }).then(checkResponse);
   };
 
-  export function addCards(inputData) {
+  addCards(inputData) {
     return fetch(`${baseUrl}/cards`, {
       method: "POST",
       headers,
@@ -52,24 +59,27 @@ function checkResponse(res) {
     }).then(checkResponse);
   };
 
-  export function deleteCards(cardID) {
+  deleteCards(cardID) {
     return fetch(`${baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers,
     }).then(checkResponse);
   };
 
-  export function addLike(cardID) {
+  addLike(cardID) {
     return fetch(`${baseUrl}/cards/likes/${cardID}`, {
       method: "PUT",
       headers,
     }).then(checkResponse);
   };
 
-  export function removeLike (cardID) {
+  removeLike (cardID) {
     return fetch(`${baseUrl}/cards/likes/${cardID}`, {
       method: "DELETE",
       headers,
     }).then(checkResponse);
   };
+
+}
+
 

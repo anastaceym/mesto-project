@@ -6,7 +6,13 @@ import { enableValidation } from './validate';
 import { getUser, editProfileInfo, changeAvatar, getInitialCards, addCards, deleteCards, addLike, removeLike } from './api';
 import './api'
 
-
+const config = {
+  baseUrl: 'https:///mesto.nomoreparties.co/v1/plus-cohort-25',
+  headers: {
+    'content-type': 'application/json',
+    authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4'
+  }
+}
 
 let userID = null;
 
