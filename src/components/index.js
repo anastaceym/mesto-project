@@ -14,7 +14,6 @@ const config = {
   }
 }
 const api = new Api(config);
-console.log(api)
 
 let userID = null;
 
