@@ -1,8 +1,8 @@
 import { createCard } from "./card";
 
-export function renderCard(inputData, container, userID, toggleLike, deleteCard) {
-  container.prepend(createCard(inputData, userID, toggleLike, deleteCard));
-  }
+// export function renderCard(inputData, container, userID, toggleLike, deleteCard) {
+//   container.prepend(createCard(inputData, userID, toggleLike, deleteCard));
+//   }
 
 export function disableButton(buttonElement, config) {
   buttonElement.classList.add(config.inactiveButtonClass);
