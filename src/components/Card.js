@@ -3,7 +3,6 @@ export class Card {
     this._name = item.name;
     this._link = item.link;
     this._ownerId = item.owner._id;
-    // this._cardId = item._id;
     this._userId = item._id;
     this._likes = item.likes;
     this._likesCount = item.likes.length;
@@ -20,12 +19,27 @@ export class Card {
       .cloneNode(true);
   }
 
+  _showMyLike() {
+    const hasLike = this._likes.find(user => this._userId = user._id);
+    if (hasLike) {
+      this._like.classList.add('elements__like_active')
+    };
+  }
+
   toggleLike() {
-    if (!this.likes.classList.contains("elements__like_active")) {
-      this._handleAddLike();
+    if (!this._like.classList.contains("elements__like_active")) {
+      this._handleAddLike(this._like);
     } else {
-      this._handleRemoveLike();
+      this._handleRemoveLike(this._like);
     }
+  }
+
+
+  setEventListeners() {
+    this._like.addEventListener("click", () => this.toggleLike());
+    this._cardDeleteButton.addEventListener("click", evt => this._handleDeleteCard());
+    // this._cardPicture.addEventListener('click', () => zoomCardImage(cardData.name, cardData.link));
+
   }
 
   makeCard() {
@@ -43,33 +57,26 @@ export class Card {
     // this._elementLikes.textContent = this._likesCount;
 
  //удаление карточек
-    const cardDeleteButton = this._card.querySelector(".elements__card-bin");
-    cardDeleteButton.addEventListener("click", evt => this._handleDeleteCard());
+
+    this._cardDeleteButton = this._card.querySelector(".elements__card-bin");
+    this._like = this._card.querySelector('.elements__like');
+    this._likeNumber = this._card.querySelector('.elements__like-number');
+
+
+    this._showMyLike();
+
 
 
     if (this._userId === this._ownerId) {
-      cardDeleteButton.classList.add('elements__card-bin_type_visible')
+      this._cardDeleteButton.classList.add('elements__card-bin_type_visible')
     } else {
-      cardDeleteButton.classList.remove('elements__card-bin_type_visible')
+      this._cardDeleteButton.classList.remove('elements__card-bin_type_visible')
     };
 
 
-    const likeButton = this._card.querySelector(".elements__like")
-    const likeNumber = this._card.querySelector('.elements__like-number');
-    likeNumber.textContent = this._likesCount;
+    // this.likeNumber.textContent = this._likesCount;
 
-
-    const hasLike = this._likes.find(user => user._id = this._userId);
-    if (hasLike) {
-      likeButton.classList.add('elements__like_active')
-    };
-
-
-    //лайки
-    likeButton.addEventListener("click", () => this.toggleLike);
-
-    // стрелочная функция для увеличения карточек
-    // this._cardPicture.addEventListener('click', () => zoomCardImage(cardData.name, cardData.link));
+    this.setEventListeners();
 
     return this._card;
   }

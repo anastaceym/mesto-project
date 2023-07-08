@@ -37,29 +37,32 @@ const api = new API(APIconfig);
 function createCard(item) {
   const card = new Card({
     item,
-    handleAddLike: (evt) => {
+    handleAddLike: (instansCard) => {
       api
         .addLike(item._id)
         .then((infoData) => { //infoData
-          evt.target.classList.toggle("elements__like_active");
-          likeNumber.textContent = infoData.likes.length;
+          console.log(instansCard);
+          instansCard.classList.toggle("elements__like_active");
+          instansCard.nextElementSibling.textContent = infoData.likes.length;
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    handleRemoveLike: (evt) => {
+    handleRemoveLike: (instansCard) => {
       api
         .removeLike(item._id)
         .then((infoData) => { //infoData
-          evt.target.classList.toggle("elements__like_active");
-          likeNumber.textContent = infoData.likes.length;
+          console.log(instansCard);
+          instansCard.classList.toggle("elements__like_active");
+          instansCard.nextElementSibling.textContent = infoData.likes.length;
         })
         .catch((err) => {
           console.log(err);
         });
     },
     handleDeleteCard: (evt) => {
+      console.log(evt)
       api
         .deleteCards(item._id)
         .then(() => {
