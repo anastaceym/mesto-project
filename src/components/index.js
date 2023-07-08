@@ -32,6 +32,47 @@ import { Section } from "./Section";
 
 const api = new API(APIconfig);
 
+function createCard(item) {
+  console.log(item)
+
+  const card = new Card({
+    item,
+    handleAddLike: (evt) => {
+      api
+        .addLike(item._id)
+        .then((infoData) => { //infoData
+          evt.target.classList.toggle("elements__like_active");
+          likeNumber.textContent = infoData.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    handleRemoveLike: (evt) => {
+      api
+        .removeLike(item._id)
+        .then((infoData) => { //infoData
+          evt.target.classList.toggle("elements__like_active");
+          likeNumber.textContent = infoData.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    handleDeleteCard: (evt) => {
+      api
+        .deleteCards(item._id)
+        .then(() => {
+          evt.target.closest(".elements__group").remove();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, "#card-template");
+  return card;
+}
+
 
 let userID = null;
 const cardsSelector = '.elements';
@@ -49,7 +90,7 @@ Promise.all([api.getUser(), api.getInitialCards()])
           items: cards,
           renderer: (item) => {
             console.log(item);
-            const card = createCard(item);
+            const card = createCard(item); //Тут работаем
             const cardElement = card.generate();
             cardList.addItem(cardElement);
           },
@@ -149,37 +190,37 @@ avatarForm.addEventListener("submit", changeAvatarProfile);
 function toggleLike(evt, cardID, likeNumber, infoData) {
   likeNumber.textContent = infoData.likes.length;
   if (!evt.target.classList.contains("elements__like_active")) {
-    api
-      .addLike(cardID)
-      .then((infoData) => {
-        evt.target.classList.toggle("elements__like_active");
-        likeNumber.textContent = infoData.likes.length;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // api
+    //   .addLike(cardID)
+    //   .then((infoData) => {
+    //     evt.target.classList.toggle("elements__like_active");
+    //     likeNumber.textContent = infoData.likes.length;
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   } else {
     api
-      .removeLike(cardID)
-      .then((infoData) => {
-        evt.target.classList.toggle("elements__like_active");
-        likeNumber.textContent = infoData.likes.length;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      // .removeLike(cardID)
+      // .then((infoData) => {
+      //   evt.target.classList.toggle("elements__like_active");
+      //   likeNumber.textContent = infoData.likes.length;
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
   }
 }
 
-function deleteCard(evt, cardID) {
-  api
-    .deleteCards(cardID)
-    .then(() => {
-      evt.target.closest(".elements__group").remove();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
+// function deleteCard(evt, cardID) {
+//   api
+//     .deleteCards(cardID)
+//     .then(() => {
+//       evt.target.closest(".elements__group").remove();
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
 
 enableValidation(validationConfig);
