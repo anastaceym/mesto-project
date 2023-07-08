@@ -1,12 +1,13 @@
 import '../pages/index.css';
-import { cardsContainer, popupAddingElement, validationConfig, nameAddNewCard, linkAddNewCard, popupEditButton, popupAddingButton, popupInputName, popupInputDescription, profileName, profileDescription, cardSubmit, popupAddingSaveButton, popupSaveButton, profileSubmit, popupProfile, popupAvatar, popupButtonAvatar, avatarSaveButon, avatarInputLink, profileAvatar, avatarForm } from './constants';
+import { cardsContainer, popupAddingElement, validationConfig, nameAddNewCard, linkAddNewCard, popupEditButton, popupAddingButton, popupInputName, popupInputDescription, profileName, profileDescription, cardSubmit, popupAddingSaveButton, popupSaveButton, profileSubmit, popupProfile, popupAvatar, popupButtonAvatar, avatarSaveButon, avatarInputLink, profileAvatar, avatarForm, APIconfig } from './constants';
 import { openPopup, closePopup } from './modal';
 import { renderCard, disableButton, formLoading } from './utils';
 import { enableValidation } from './validate';
-import { getUser, editProfileInfo, changeAvatar, getInitialCards, addCards, deleteCards, addLike, removeLike } from './api';
-import './api'
+import { API } from './API';
+import './API'
 
-
+const api = new API(APIconfig);
+console.log(api)
 
 let userID = null;
 
@@ -23,7 +24,7 @@ popupEditButton.addEventListener("click", function () {
 });
 
 
-   Promise.all([ getUser(), getInitialCards()]).then(([userData, cards]) => {
+  Promise.all([ api.getUser(), api.getInitialCards()]).then(([userData, cards]) => {
     profileName.textContent = userData.name;
     profileDescription.textContent = userData.about;
     profileAvatar.src = userData.avatar;
@@ -36,17 +37,17 @@ popupEditButton.addEventListener("click", function () {
   .catch((err) => {
     console.log(err)
   })
- 
-  
+
+
 // функция создания карточек
- function changeCards(evt) {
+function changeCards(evt) {
   const cardObject = { name: nameAddNewCard.value, link: linkAddNewCard.value };
     evt.preventDefault();
     formLoading(popupAddingSaveButton, true);
 
-    addCards(cardObject).then((inputData) => {
+    api.addCards(cardObject).then((inputData) => {
       renderCard(inputData, cardsContainer, userID, toggleLike, deleteCard);
-      
+
         console.log(evt.submitter);
         disableButton(popupAddingSaveButton, validationConfig);
         closePopup(popupAddingElement);
@@ -63,10 +64,10 @@ function changeProfile(evt) {
   evt.preventDefault();
   formLoading(popupSaveButton, true);
 
-  editProfileInfo({ name: popupInputName.value, about: popupInputDescription.value }).then((infoData) => {
+  api.editProfileInfo({ name: popupInputName.value, about: popupInputDescription.value }).then((infoData) => {
     profileName.textContent = infoData.name;
     profileDescription.textContent = infoData.about;
-  
+
     disableButton(popupSaveButton, validationConfig);
     closePopup(popupProfile);
   })
@@ -79,14 +80,14 @@ popupAddingButton.addEventListener("click", function () {
   openPopup(popupAddingElement);
 });
 
-//сохраняем изменения 
+//сохраняем изменения
 profileSubmit.addEventListener("submit", changeProfile);
 
 function changeAvatarProfile(evt) {
   evt.preventDefault();
   formLoading(avatarSaveButon, true);
 
-  changeAvatar({ avatar: avatarInputLink.value}).then((editData) => {
+  api.changeAvatar({ avatar: avatarInputLink.value}).then((editData) => {
     profileAvatar.src = editData.avatar;
     closePopup(popupAvatar);
     avatarForm.reset();
@@ -100,7 +101,7 @@ avatarForm.addEventListener("submit", changeAvatarProfile);
 function toggleLike(evt, cardID, likeNumber, infoData) {
   likeNumber.textContent = infoData.likes.length;
   if (!evt.target.classList.contains("elements__like_active")) {
-    addLike(cardID).then((infoData) => {
+    api.addLike(cardID).then((infoData) => {
       evt.target.classList.toggle("elements__like_active");
       likeNumber.textContent = infoData.likes.length;
     })
@@ -108,7 +109,7 @@ function toggleLike(evt, cardID, likeNumber, infoData) {
       console.log(err);
     });
   } else {
-    removeLike(cardID).then((infoData) => {
+    api.removeLike(cardID).then((infoData) => {
       evt.target.classList.toggle("elements__like_active");
         likeNumber.textContent = infoData.likes.length;
     })
@@ -119,7 +120,7 @@ function toggleLike(evt, cardID, likeNumber, infoData) {
 }
 
 function deleteCard(evt, cardID) {
-  deleteCards(cardID).then(() => {
+  api.deleteCards(cardID).then(() => {
     evt.target.closest(".elements__group").remove();
   })
   .catch((err) => {
