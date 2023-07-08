@@ -36,17 +36,7 @@ let userID = null;
 
 export const cardsSelector = '.elements';
 
-//попап для изменения аватарки профиля
-popupButtonAvatar.addEventListener("click", function () {
-  openPopup(popupAvatar);
-});
 
-//попап для профиля
-popupEditButton.addEventListener("click", function () {
-  openPopup(popupProfile);
-  popupInputName.value = profileName.textContent;
-  popupInputDescription.value = profileDescription.textContent;
-});
 
 Promise.all([api.getUser(), api.getInitialCards()])
   .then(
@@ -120,6 +110,18 @@ function changeProfile(evt) {
     .catch((err) => console.log(err))
     .finally(() => formLoading(popupSaveButton, false));
 }
+
+//попап для изменения аватарки профиля
+popupButtonAvatar.addEventListener("click", function () {
+  openPopup(popupAvatar);
+});
+
+//попап для профиля
+popupEditButton.addEventListener("click", function () {
+  openPopup(popupProfile);
+  popupInputName.value = profileName.textContent;
+  popupInputDescription.value = profileDescription.textContent;
+});
 
 //попап для контента
 popupAddingButton.addEventListener("click", function () {
