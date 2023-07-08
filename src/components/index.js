@@ -77,7 +77,7 @@ function changeProfile(evt) {
 
 //попап для контента
 popupAddingButton.addEventListener("click", function () {
-  api.openPopup(popupAddingElement);
+  openPopup(popupAddingElement);
 });
 
 //сохраняем изменения
