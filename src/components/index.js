@@ -7,7 +7,6 @@ import { API } from './API';
 import './API'
 
 const api = new API(APIconfig);
-console.log(api)
 
 let userID = null;
 
