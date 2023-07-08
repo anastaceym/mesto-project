@@ -1,12 +1,13 @@
 import '../pages/index.css';
-import { cardsContainer, popupAddingElement, validationConfig, nameAddNewCard, linkAddNewCard, popupEditButton, popupAddingButton, popupInputName, popupInputDescription, profileName, profileDescription, cardSubmit, popupAddingSaveButton, popupSaveButton, profileSubmit, popupProfile, popupAvatar, popupButtonAvatar, avatarSaveButon, avatarInputLink, profileAvatar, avatarForm, config } from './constants';
+import { cardsContainer, popupAddingElement, validationConfig, nameAddNewCard, linkAddNewCard, popupEditButton, popupAddingButton, popupInputName, popupInputDescription, profileName, profileDescription, cardSubmit, popupAddingSaveButton, popupSaveButton, profileSubmit, popupProfile, popupAvatar, popupButtonAvatar, avatarSaveButon, avatarInputLink, profileAvatar, avatarForm, APIconfig } from './constants';
 import { openPopup, closePopup } from './modal';
 import { renderCard, disableButton, formLoading } from './utils';
 import { enableValidation } from './validate';
-import { Api } from './api';
-import './api'
+import { API } from './API';
+import './API'
 
-const api = new Api(config);
+const api = new API(APIconfig);
+console.log(api)
 
 let userID = null;
 

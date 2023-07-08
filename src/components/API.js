@@ -1,4 +1,4 @@
-export class Api {
+export class API {
   #checkResponse(res) {
     if (res.ok) {
       return res.json();
