@@ -28,13 +28,13 @@ import { openPopup, closePopup } from "./modal";
 import { disableButton, formLoading } from "./utils"; //renderCard
 import { enableValidation } from "./validate";
 import { API } from "./API";
+import { Card } from "./Card";
 import { Section } from "./Section";
+
 
 const api = new API(APIconfig);
 
 function createCard(item) {
-  console.log(item)
-
   const card = new Card({
     item,
     handleAddLike: (evt) => {
@@ -75,7 +75,6 @@ function createCard(item) {
 
 
 let userID = null;
-const cardsSelector = '.elements';
 
 Promise.all([api.getUser(), api.getInitialCards()])
   .then(
@@ -89,23 +88,21 @@ Promise.all([api.getUser(), api.getInitialCards()])
         {
           items: cards,
           renderer: (item) => {
-            console.log(item);
-            const card = createCard(item); //Тут работаем
-            const cardElement = card.generate();
+            const card = createCard(item);
+            const cardElement = card.makeCard();
             cardList.addItem(cardElement);
           },
         },
-        cardsSelector
+        ".elements"
       );
       cardList.renderItems();
-
-      //   cards.reverse().forEach((card) => {
-      //     renderCard(card, cardsContainer, userID, toggleLike, deleteCard);
-      //   })
-      // })
     }
   )
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err);
+  });
+
+
 
 // функция создания карточек
 function changeCards(evt) {
@@ -187,40 +184,5 @@ function changeAvatarProfile(evt) {
 
 avatarForm.addEventListener("submit", changeAvatarProfile);
 
-function toggleLike(evt, cardID, likeNumber, infoData) {
-  likeNumber.textContent = infoData.likes.length;
-  if (!evt.target.classList.contains("elements__like_active")) {
-    // api
-    //   .addLike(cardID)
-    //   .then((infoData) => {
-    //     evt.target.classList.toggle("elements__like_active");
-    //     likeNumber.textContent = infoData.likes.length;
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-  } else {
-    api
-      // .removeLike(cardID)
-      // .then((infoData) => {
-      //   evt.target.classList.toggle("elements__like_active");
-      //   likeNumber.textContent = infoData.likes.length;
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
-  }
-}
-
-// function deleteCard(evt, cardID) {
-//   api
-//     .deleteCards(cardID)
-//     .then(() => {
-//       evt.target.closest(".elements__group").remove();
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// }
 
 enableValidation(validationConfig);
