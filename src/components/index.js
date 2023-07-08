@@ -25,18 +25,16 @@ import {
   APIconfig,
 } from "./constants";
 import { openPopup, closePopup } from "./modal";
-import { renderCard, disableButton, formLoading } from "./utils";
+import { disableButton, formLoading } from "./utils"; //renderCard
 import { enableValidation } from "./validate";
 import { API } from "./API";
 import { Section } from "./Section";
 
 const api = new API(APIconfig);
 
+
 let userID = null;
-
-export const cardsSelector = '.elements';
-
-
+const cardsSelector = '.elements';
 
 Promise.all([api.getUser(), api.getInitialCards()])
   .then(
@@ -50,6 +48,7 @@ Promise.all([api.getUser(), api.getInitialCards()])
         {
           items: cards,
           renderer: (item) => {
+            console.log(item);
             const card = createCard(item);
             const cardElement = card.generate();
             cardList.addItem(cardElement);
@@ -63,7 +62,6 @@ Promise.all([api.getUser(), api.getInitialCards()])
       //     renderCard(card, cardsContainer, userID, toggleLike, deleteCard);
       //   })
       // })
-
     }
   )
   .catch((err) => console.log(err));
