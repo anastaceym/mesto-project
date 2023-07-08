@@ -48,34 +48,35 @@ popupEditButton.addEventListener("click", function () {
   popupInputDescription.value = profileDescription.textContent;
 });
 
-Promise.all([api.getUser(), api.getInitialCards()]).then(
-  ([userData, cards]) => {
-    profileName.textContent = userData.name;
-    profileDescription.textContent = userData.about;
-    profileAvatar.src = userData.avatar;
-    userID = userData._id;
+Promise.all([api.getUser(), api.getInitialCards()])
+  .then(
+    ([userData, cards]) => {
+      profileName.textContent = userData.name;
+      profileDescription.textContent = userData.about;
+      profileAvatar.src = userData.avatar;
+      userID = userData._id;
 
-    const cardList = new Section(
-      {
-        items: cards,
-        renderer: (item) => {
-          const card = createCard(item);
-          const cardElement = card.generate();
-          cardList.addItem(cardElement);
+      const cardList = new Section(
+        {
+          items: cards,
+          renderer: (item) => {
+            const card = createCard(item);
+            const cardElement = card.generate();
+            cardList.addItem(cardElement);
+          },
         },
-      },
-      cardsSelector
-    );
-    cardList.renderItems();
+        cardsSelector
+      );
+      cardList.renderItems();
 
-    //   cards.reverse().forEach((card) => {
-    //     renderCard(card, cardsContainer, userID, toggleLike, deleteCard);
-    //   })
-    // })
-    // .catch((err) => {
-    //   console.log(err)
-  }
-);
+      //   cards.reverse().forEach((card) => {
+      //     renderCard(card, cardsContainer, userID, toggleLike, deleteCard);
+      //   })
+      // })
+
+    }
+  )
+  .catch((err) => console.log(err));
 
 // функция создания карточек
 function changeCards(evt) {
