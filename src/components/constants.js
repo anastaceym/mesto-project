@@ -43,3 +43,9 @@ export const APIconfig = {
     authorization: '5dc000c4-85fb-4091-8cec-e004bae4f9b4'
   }
 }
+
+export const profileConfig = {
+  title: '.profile__name',
+  about: '.profile__description',
+  avatar: '.profile__image'
+}

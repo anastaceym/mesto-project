@@ -22,7 +22,8 @@ import {
   avatarInputLink,
   profileAvatar,
   avatarForm,
-  APIconfig,
+  APIconfig, 
+  profileConfig
 } from "./constants";
 import { openPopup, closePopup } from "./modal";
 import { disableButton, formLoading } from "./utils"; //renderCard
@@ -30,6 +31,7 @@ import { enableValidation } from "./validate";
 import { API } from "./API";
 import { Card } from "./Card";
 import { Section } from "./Section";
+import { UserInfo } from "./User-info";
 
 
 const api = new API(APIconfig);
@@ -74,16 +76,15 @@ function createCard(item) {
   return card;
 }
 
-
-let userID = null;
+// let userID = null;
 
 Promise.all([api.getUser(), api.getInitialCards()])
   .then(
     ([userData, cards]) => {
-      profileName.textContent = userData.name;
-      profileDescription.textContent = userData.about;
-      profileAvatar.src = userData.avatar;
-      userID = userData._id;
+      // userID = userData._id;
+      const userInfo = new UserInfo(profileConfig);
+
+      userInfo.editProfileInfo(userData);
 
       const cardList = new Section(
         {
