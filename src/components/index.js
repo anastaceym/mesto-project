@@ -30,6 +30,7 @@ import { enableValidation } from "./validate";
 import { API } from "./API";
 import { Card } from "./Card";
 import { Section } from "./Section";
+import { UserInfo } from "./User-info";
 
 
 const api = new API(APIconfig);
