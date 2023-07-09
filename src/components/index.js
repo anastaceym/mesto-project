@@ -22,7 +22,8 @@ import {
   avatarInputLink,
   profileAvatar,
   avatarForm,
-  APIconfig,
+  APIconfig, 
+  profileConfig
 } from "./constants";
 import { openPopup, closePopup } from "./modal";
 import { disableButton, formLoading } from "./utils"; //renderCard
@@ -85,6 +86,8 @@ Promise.all([api.getUser(), api.getInitialCards()])
       profileDescription.textContent = userData.about;
       profileAvatar.src = userData.avatar;
       userID = userData._id;
+
+      const userInfo = new UserInfo(profileConfig);
 
       const cardList = new Section(
         {
