@@ -19,8 +19,8 @@ export class Card {
       .cloneNode(true);
   }
 
-  _showMyLike() {
-    const hasLike = this._likes.find(user => this._userId = user._id);
+  _identifyLike() {
+    const hasLike = this._likes.find(user => this._userId === user._id);
     if (hasLike) {
       this._like.classList.add('elements__like_active')
     };
@@ -28,18 +28,25 @@ export class Card {
 
   toggleLike() {
     if (!this._like.classList.contains("elements__like_active")) {
-      this._handleAddLike(this._like);
+      this._handleAddLike(this);
     } else {
-      this._handleRemoveLike(this._like);
+      this._handleRemoveLike(this);
     }
   }
 
+  setLike() {
+    this._like.classList.toggle("elements__like_active");
+  }
+
+  setCountLike(data) {
+    this._likes = data.likes;
+    this._likeNumber.textContent = data.likes.length;
+  }
 
   setEventListeners() {
     this._like.addEventListener("click", () => this.toggleLike());
     this._cardDeleteButton.addEventListener("click", evt => this._handleDeleteCard());
     // this._cardPicture.addEventListener('click', () => zoomCardImage(cardData.name, cardData.link));
-
   }
 
   makeCard() {
@@ -63,8 +70,7 @@ export class Card {
     this._likeNumber = this._card.querySelector('.elements__like-number');
 
 
-    this._showMyLike();
-
+    this._identifyLike();
 
 
     if (this._userId === this._ownerId) {

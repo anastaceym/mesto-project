@@ -8,6 +8,7 @@ export class Section {
   renderItems() {
     this._items.reverse().forEach(item => this._renderer(item));
   }
+  
   addItem(item) {
     this._container.prepend(item);
   }

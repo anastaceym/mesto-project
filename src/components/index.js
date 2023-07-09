@@ -35,38 +35,38 @@ import { Section } from "./Section";
 const api = new API(APIconfig);
 
 function createCard(item) {
+  console.log(item);
   const card = new Card({
     item,
-    handleAddLike: (instansCard) => {
+    handleAddLike: (cardInstans) => {
       api
         .addLike(item._id)
-        .then((infoData) => { //infoData
-          console.log(instansCard);
-          instansCard.classList.toggle("elements__like_active");
-          instansCard.nextElementSibling.textContent = infoData.likes.length;
+        .then((infoData) => {
+          cardInstans.setLike();
+          cardInstans.setCountLike(infoData);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    handleRemoveLike: (instansCard) => {
+    handleRemoveLike: (cardInstans) => {
       api
         .removeLike(item._id)
-        .then((infoData) => { //infoData
-          console.log(instansCard);
-          instansCard.classList.toggle("elements__like_active");
-          instansCard.nextElementSibling.textContent = infoData.likes.length;
+        .then((infoData) => {
+          console.log(cardInstans);
+          cardInstans.setLike();
+          cardInstans.setCountLike(infoData);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    handleDeleteCard: (evt) => {
-      console.log(evt)
+    handleDeleteCard: (cardInstans) => {
       api
         .deleteCards(item._id)
         .then(() => {
-          evt.target.closest(".elements__group").remove();
+
+          // evt.target.closest(".elements__group").remove();
         })
         .catch((err) => {
           console.log(err);
@@ -86,11 +86,13 @@ Promise.all([api.getUser(), api.getInitialCards()])
       profileDescription.textContent = userData.about;
       profileAvatar.src = userData.avatar;
       userID = userData._id;
+      console.log(userID)
 
       const cardList = new Section(
         {
           items: cards,
           renderer: (item) => {
+            console.log(item)
             const card = createCard(item);
             const cardElement = card.makeCard();
             cardList.addItem(cardElement);
@@ -108,24 +110,24 @@ Promise.all([api.getUser(), api.getInitialCards()])
 
 
 // функция создания карточек
-function changeCards(evt) {
-  const cardObject = { name: nameAddNewCard.value, link: linkAddNewCard.value };
-  evt.preventDefault();
-  formLoading(popupAddingSaveButton, true);
+// function changeCards(evt) {
+//   const cardObject = { name: nameAddNewCard.value, link: linkAddNewCard.value };
+//   evt.preventDefault();
+//   formLoading(popupAddingSaveButton, true);
 
-  api
-    .addCards(cardObject)
-    .then((inputData) => {
-      renderCard(inputData, cardsContainer, userID, toggleLike, deleteCard);
+//   api
+//     .addCards(cardObject)
+//     .then((inputData) => {
+//       renderCard(inputData, cardsContainer, userID, toggleLike, deleteCard);
 
-      console.log(evt.submitter);
-      disableButton(popupAddingSaveButton, validationConfig);
-      closePopup(popupAddingElement);
-      cardSubmit.reset();
-    })
-    .catch((err) => console.log(err))
-    .finally(() => formLoading(popupAddingSaveButton, false));
-}
+//       console.log(evt.submitter);
+//       disableButton(popupAddingSaveButton, validationConfig);
+//       closePopup(popupAddingElement);
+//       cardSubmit.reset();
+//     })
+//     .catch((err) => console.log(err))
+//     .finally(() => formLoading(popupAddingSaveButton, false));
+// }
 
 cardSubmit.addEventListener("submit", changeCards);
 
