@@ -35,9 +35,9 @@ import { Section } from "./Section";
 const api = new API(APIconfig);
 
 function createCard(item) {
-  console.log(item);
   const card = new Card({
     item,
+    userId: "53e1ff49d53a1efc36625b8b",
     handleAddLike: (cardInstans) => {
       api
         .addLike(item._id)
@@ -53,7 +53,6 @@ function createCard(item) {
       api
         .removeLike(item._id)
         .then((infoData) => {
-          console.log(cardInstans);
           cardInstans.setLike();
           cardInstans.setCountLike(infoData);
         })

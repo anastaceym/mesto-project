@@ -1,9 +1,10 @@
 export class Card {
-  constructor({item, handleAddLike, handleRemoveLike, handleDeleteCard}, cardSelector) {
+  constructor({item, userId, handleAddLike, handleRemoveLike, handleDeleteCard}, cardSelector) {
     this._name = item.name;
     this._link = item.link;
     this._ownerId = item.owner._id;
-    this._userId = item._id;
+    this._id = item._id;
+    this._userId = userId;
     this._likes = item.likes;
     this._likesCount = item.likes.length;
     this._cardSelector = cardSelector;
