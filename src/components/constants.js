@@ -1,7 +1,6 @@
 export const cardPopupOpenZoom = document.querySelector(".popup-zoom");
 export const popupImageName = document.querySelector('.popup__caption');
 export const popupImageLink = document.querySelector('.popup__image');
-export const cardTemplate = document.querySelector("#card-template").content;
 export const nameAddNewCard = document.querySelector(".popup__input_theme_name-adding");
 export const linkAddNewCard = document.querySelector(".popup__input_theme_description-adding");
 export const cardsContainer = document.querySelector(".elements");
