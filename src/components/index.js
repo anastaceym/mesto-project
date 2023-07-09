@@ -76,18 +76,15 @@ function createCard(item) {
   return card;
 }
 
-
-let userID = null;
+// let userID = null;
 
 Promise.all([api.getUser(), api.getInitialCards()])
   .then(
     ([userData, cards]) => {
-      profileName.textContent = userData.name;
-      profileDescription.textContent = userData.about;
-      profileAvatar.src = userData.avatar;
-      userID = userData._id;
-
+      // userID = userData._id;
       const userInfo = new UserInfo(profileConfig);
+
+      userInfo.editProfileInfo(userData);
 
       const cardList = new Section(
         {

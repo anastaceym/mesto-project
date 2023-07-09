@@ -46,6 +46,6 @@ export const APIconfig = {
 
 export const profileConfig = {
   title: '.profile__name',
-  description: '.profile__description',
+  about: '.profile__description',
   avatar: '.profile__image'
 }
