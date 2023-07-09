@@ -20,6 +20,12 @@ export class Card {
       .cloneNode(true);
   }
 
+  deleteCard() {
+    console.log(this.card)
+    this._card.remove();
+    this._card = null;
+  }
+
   _identifyLike() {
     const hasLike = this._likes.find(user => this._userId === user._id);
     if (hasLike) {
@@ -46,7 +52,7 @@ export class Card {
 
   setEventListeners() {
     this._like.addEventListener("click", () => this.toggleLike());
-    this._cardDeleteButton.addEventListener("click", evt => this._handleDeleteCard());
+    this._cardDeleteButton.addEventListener("click", () => this._handleDeleteCard(this));
     // this._cardPicture.addEventListener('click', () => zoomCardImage(cardData.name, cardData.link));
   }
 

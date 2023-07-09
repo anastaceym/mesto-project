@@ -64,7 +64,7 @@ function createCard(item) {
       api
         .deleteCards(item._id)
         .then(() => {
-
+          cardInstans.deleteCard();
           // evt.target.closest(".elements__group").remove();
         })
         .catch((err) => {
