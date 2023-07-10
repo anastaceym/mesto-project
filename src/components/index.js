@@ -27,7 +27,7 @@ import {
 } from "./constants";
 import { openPopup, closePopup } from "./modal";
 import { disableButton, formLoading } from "./utils"; //renderCard
-import { enableValidation } from "./validate";
+// import { enableValidation } from "./validate";
 import { API } from "./API";
 import { Card } from "./Card";
 import { Section } from "./Section";
@@ -36,7 +36,10 @@ import { FormValidator } from "./FormValidator";
 
 
 const api = new API(APIconfig);
-const formValidator = new FormValidator();
+const popupAddingElementFV = new FormValidator(popupAddingElement, validationConfig);
+console.log(popupAddingElementFV)
+popupAddingElementFV.enableValidation();
+const popupAvatarFV =new FormValidator(popupAvatar, validationConfig);
 
 function createCard(item) {
   const card = new Card({
@@ -191,4 +194,4 @@ function changeAvatarProfile(evt) {
 avatarForm.addEventListener("submit", changeAvatarProfile);
 
 
-enableValidation(validationConfig);
+// enableValidation(validationConfig);
