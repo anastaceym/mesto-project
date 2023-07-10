@@ -17,20 +17,19 @@ export class Popup {
     this.open();
   }
 
-  _closePopup(evt) {
+  _closePopup = (evt) => {
     if (evt.target.classList.contains("popup_opened")){
         this.close();
     }
   }
 
-  _closePopupOnEsc(evt) {
+  _closePopupOnEsc = (evt) => {
     if (evt.key === "Escape") {
-      const activePopup = document.querySelector(".popup_opened");
-      this._closePopup(activePopup);
+      this.close();
     }
   }
 
-  _closePopupOnOverlay(evt) {
+  _closePopupOnOverlay = (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
         this.close();
     }
