@@ -1,6 +1,5 @@
 export class Popup {
   constructor(popupSelector) {
-    // this._popupSelector = popupSelector;
     this._popup = document.querySelector(popupSelector);
   }
 
@@ -24,7 +23,6 @@ export class Popup {
     }
   }
 
-
   _closePopupOnEsc(evt) {
     if (evt.key === "Escape") {
       const activePopup = document.querySelector(".popup_opened");
@@ -38,14 +36,6 @@ export class Popup {
     }
   }
 
-  // функция закрытия попапа
-//   setEventListeners() {
-//     popupCloseButtons.forEach((button) => {
-//       const buttonsPopup = button.closest(".popup");
-//       button.addEventListener("click", () => closePopup(buttonsPopup));
-//       buttonsPopup.addEventListener("click", closePopupOnOverlay);
-//     });
-//   }
   setEventListeners() {
     this._popup.addEventListener('mousedown', this._closePopup);
     this._popup.addEventListener('mousedown', this._closePopupOnOverlay);
