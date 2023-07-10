@@ -33,6 +33,7 @@ import { Card } from "./Card";
 import { Section } from "./Section";
 import { UserInfo } from "./User-info";
 import { FormValidator } from "./FormValidator";
+import { Popup } from "./Popup";
 
 
 const api = new API(APIconfig);
