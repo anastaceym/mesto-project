@@ -26,7 +26,7 @@ import {
   profileConfig
 } from "./constants";
 import { openPopup, closePopup } from "./modal";
-import { disableButton, formLoading } from "./utils"; //renderCard
+import { formLoading } from "./utils"; //renderCard
 // import { enableValidation } from "./validate";
 import { API } from "./API";
 import { Card } from "./Card";
@@ -36,10 +36,16 @@ import { FormValidator } from "./FormValidator";
 
 
 const api = new API(APIconfig);
+
 const popupAddingElementFV = new FormValidator(popupAddingElement, validationConfig);
-console.log(popupAddingElementFV)
 popupAddingElementFV.enableValidation();
+
 const popupAvatarFV =new FormValidator(popupAvatar, validationConfig);
+popupAvatarFV.enableValidation();
+
+const popupProfileFV =new FormValidator(popupProfile, validationConfig);
+popupProfileFV.enableValidation();
+
 
 function createCard(item) {
   const card = new Card({
@@ -123,9 +129,7 @@ function changeCards(evt) {
       createCard(inputData);
 
       // card.makeCard();
-      // renderCard(inputData, cardsContainer, userID, toggleLike, deleteCard);
-
-      disableButton(popupAddingSaveButton, validationConfig);
+      popupAddingElementFV.disableButton();
       closePopup(popupAddingElement);
       cardSubmit.reset();
     })
@@ -149,7 +153,7 @@ function changeProfile(evt) {
       profileName.textContent = infoData.name;
       profileDescription.textContent = infoData.about;
 
-      disableButton(popupSaveButton, validationConfig);
+      popupProfileFV.disableButton(popupSaveButton, validationConfig);
       closePopup(popupProfile);
     })
     .catch((err) => console.log(err))
@@ -192,6 +196,3 @@ function changeAvatarProfile(evt) {
 }
 
 avatarForm.addEventListener("submit", changeAvatarProfile);
-
-
-// enableValidation(validationConfig);

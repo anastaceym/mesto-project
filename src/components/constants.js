@@ -9,7 +9,7 @@ export const popupCloseButtons = document.querySelectorAll(".popup__close-icon")
 export const popupAddingSaveButton = document.querySelector(".popup__save-adding");
 export const popupSaveButton = document.querySelector(".popup__save");
 
-export const popupProfile = document.querySelector(".popup");
+export const popupProfile = document.querySelector(".popup-profile");
 export const popupEditButton = document.querySelector(".profile__edit-button");
 export const popupAddingButton = document.querySelector(".profile__renew-content");
 export const popupInputName = document.querySelector(".popup__input_theme_name");

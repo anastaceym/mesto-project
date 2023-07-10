@@ -7,14 +7,14 @@ export function enableValidation (config) {
       setEventListener(formElement, config);
     });
   };
-  
+
   function setEventListener (formElement, config){
     const {inputSelector,submitButtonSelector} = config;
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(submitButtonSelector);
-  
+
     toggleButtonState(inputList, buttonElement, config);
-  
+
     inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", function () {
         checkInputValidity(formElement, inputElement, config);
@@ -34,7 +34,7 @@ export function enableValidation (config) {
     } else {
       hideInputError(formElement, inputElement, config);
     }
-  }; 
+  };
 
   function toggleButtonState (inputList, buttonElement, config){
     const {inactiveButtonClass} = config;
@@ -45,7 +45,7 @@ export function enableValidation (config) {
     buttonElement.classList.remove(inactiveButtonClass);
   }
 };
-  
+
   function showInputError (formElement, inputElement, errorMessage, config){
   const { inputErrorClass, errorClass } = config;
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
