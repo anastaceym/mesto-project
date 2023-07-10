@@ -22,7 +22,7 @@ import {
   avatarInputLink,
   profileAvatar,
   avatarForm,
-  APIconfig, 
+  APIconfig,
   profileConfig
 } from "./constants";
 import { openPopup, closePopup } from "./modal";
@@ -32,9 +32,11 @@ import { API } from "./API";
 import { Card } from "./Card";
 import { Section } from "./Section";
 import { UserInfo } from "./User-info";
+import { FormValidator } from "./FormValidator";
 
 
 const api = new API(APIconfig);
+const formValidator = new FormValidator();
 
 function createCard(item) {
   const card = new Card({
