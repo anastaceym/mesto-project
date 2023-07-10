@@ -4,10 +4,10 @@
 //   container.prepend(createCard(inputData, userID, toggleLike, deleteCard));
 //   }
 
-export function disableButton(buttonElement, config) {
-  buttonElement.classList.add(config.inactiveButtonClass);
-  buttonElement.disabled = true;
-  }
+// export function disableButton(buttonElement, config) {
+//   buttonElement.classList.add(config.inactiveButtonClass);
+//   buttonElement.disabled = true;
+//   }
 
 export function formLoading(button, hasLoading) {
   if(hasLoading) {
