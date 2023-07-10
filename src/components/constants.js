@@ -49,3 +49,8 @@ export const profileConfig = {
   about: '.profile__description',
   avatar: '.profile__image'
 }
+
+export const imagePopupConfig = {
+  image: '.popup__image',
+  caption: '.popup__caption'
+}

@@ -1,6 +1,5 @@
 import "../pages/index.css";
 import {
-  cardsContainer,
   popupAddingElement,
   validationConfig,
   nameAddNewCard,
@@ -23,7 +22,8 @@ import {
   profileAvatar,
   avatarForm,
   APIconfig,
-  profileConfig
+  profileConfig,
+  imagePopupConfig
 } from "./constants";
 import { openPopup, closePopup } from "./modal";
 import { formLoading } from "./utils"; //renderCard
@@ -33,8 +33,10 @@ import { Card } from "./Card";
 import { Section } from "./Section";
 import { UserInfo } from "./User-info";
 import { FormValidator } from "./FormValidator";
-import { Popup } from "./Popup";
+import { PopupWithImage } from "./PopupWithImage";
 
+const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
+console.log(popupWithImage);
 
 const api = new API(APIconfig);
 
