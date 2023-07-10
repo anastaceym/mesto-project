@@ -27,16 +27,12 @@ import {
 } from "./constants";
 import { openPopup, closePopup } from "./modal";
 import { formLoading } from "./utils"; //renderCard
-// import { enableValidation } from "./validate";
 import { API } from "./API";
 import { Card } from "./Card";
 import { Section } from "./Section";
 import { UserInfo } from "./User-info";
 import { FormValidator } from "./FormValidator";
 import { PopupWithImage } from "./PopupWithImage";
-
-// const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
-// console.log(popupWithImage);
 
 const api = new API(APIconfig);
 
@@ -53,7 +49,7 @@ popupProfileFV.enableValidation();
 function createCard(item) {
   const card = new Card({
     item,
-    userId: "53e1ff49d53a1efc36625b8b",
+    userId: userInfo.id,
     handleZoomImage: (cardInstans) => {
       popupWithImage.open(cardInstans._name, cardInstans._link);
     },
@@ -93,15 +89,13 @@ function createCard(item) {
   return card;
 }
 
-// let userID = null;
+
 const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
+const userInfo = new UserInfo(profileConfig);
 
 Promise.all([api.getUser(), api.getInitialCards()])
   .then(
     ([userData, cards]) => {
-      // userID = userData._id;
-      const userInfo = new UserInfo(profileConfig);
-
       userInfo.editProfileInfo(userData);
 
       const cardList = new Section(
