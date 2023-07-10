@@ -35,8 +35,8 @@ import { UserInfo } from "./User-info";
 import { FormValidator } from "./FormValidator";
 import { PopupWithImage } from "./PopupWithImage";
 
-const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
-console.log(popupWithImage);
+// const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
+// console.log(popupWithImage);
 
 const api = new API(APIconfig);
 
@@ -53,7 +53,10 @@ popupProfileFV.enableValidation();
 function createCard(item) {
   const card = new Card({
     item,
-    userId: "53e1ff49d53a1efc36625b8b", //это убрать после создания class UserInfo
+    userId: "53e1ff49d53a1efc36625b8b",
+    handleZoomImage: (cardInstans) => {
+      popupWithImage.open(cardInstans._name, cardInstans._link);
+    },
     handleAddLike: (cardInstans) => {
       api
         .addLike(item._id)
@@ -91,6 +94,7 @@ function createCard(item) {
 }
 
 // let userID = null;
+const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
 
 Promise.all([api.getUser(), api.getInitialCards()])
   .then(

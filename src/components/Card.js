@@ -1,5 +1,5 @@
 export class Card {
-  constructor({item, userId, handleAddLike, handleRemoveLike, handleDeleteCard}, cardSelector) {
+  constructor({item, userId, handleZoomImage, handleAddLike, handleRemoveLike, handleDeleteCard}, cardSelector) {
     this._name = item.name;
     this._link = item.link;
     this._ownerId = item.owner._id;
@@ -8,6 +8,7 @@ export class Card {
     this._likes = item.likes;
     this._likesCount = item.likes.length;
     this._cardSelector = cardSelector;
+    this._handleZoomImage = handleZoomImage;
     this._handleAddLike = handleAddLike;
     this._handleRemoveLike = handleRemoveLike;
     this._handleDeleteCard = handleDeleteCard;
@@ -52,6 +53,7 @@ export class Card {
   _setEventListeners() {
     this._like.addEventListener("click", () => this._toggleLike());
     this._cardDeleteButton.addEventListener("click", () => this._handleDeleteCard(this));
+    this._cardPicture.addEventListener('click', () => this._handleZoomImage(this));
     // this._cardPicture.addEventListener('click', () => zoomCardImage(cardData.name, cardData.link));
   }
 
