@@ -13,7 +13,6 @@ import {
   profileConfig,
   imagePopupConfig
 } from "./constants";
-import { openPopup, closePopup } from "./modal";
 import { API } from "./API";
 import { Card } from "./Card";
 import { Section } from "./Section";
