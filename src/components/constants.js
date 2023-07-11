@@ -43,3 +43,9 @@ export const imagePopupConfig = {
   image: '.popup__image',
   caption: '.popup__caption'
 }
+
+export const popupConfig = {
+  panel: '.popup__panel',
+  input: '.popup__input',
+  submitBtn: '.popup__btn-submit'
+}

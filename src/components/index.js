@@ -11,7 +11,8 @@ import {
   popupButtonAvatar,
   APIconfig,
   profileConfig,
-  imagePopupConfig
+  imagePopupConfig,
+  popupConfig,
 } from "./constants";
 import { API } from "./API";
 import { Card } from "./Card";
@@ -117,7 +118,7 @@ const popupWithFormAdd = new PopupWithForm({
         popupWithFormAdd.formLoading(false);
       });
   }
-}, '.popup-adding');
+}, popupConfig, '.popup-adding');
 
 const popupWithFormEdit = new PopupWithForm({
   submit: (item)=> {
@@ -135,7 +136,7 @@ const popupWithFormEdit = new PopupWithForm({
         popupWithFormEdit.formLoading(false);
       });
   }
-}, '.popup-profile');
+}, popupConfig, '.popup-profile');
 
 const popupWithFormAvatar = new PopupWithForm({
   submit: (item)=> {
@@ -153,7 +154,7 @@ const popupWithFormAvatar = new PopupWithForm({
         popupWithFormAvatar.formLoading(false);
       });
   }
-}, '.popup-image-updating');
+}, popupConfig, '.popup-image-updating');
 
 //попап для изменения аватарки профиля
 popupButtonAvatar.addEventListener("click", function () {
