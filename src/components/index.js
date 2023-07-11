@@ -101,7 +101,7 @@ Promise.all([api.getUser(), api.getInitialCards()])
   });
 
 const popupWithFormAdd = new PopupWithForm({
-  submit: (item)=> {
+  submit: (item) => {
     popupWithFormAdd.formLoading(true);
     api
       .addCards(item)
@@ -121,7 +121,7 @@ const popupWithFormAdd = new PopupWithForm({
 }, popupConfig, '.popup-adding');
 
 const popupWithFormEdit = new PopupWithForm({
-  submit: (item)=> {
+  submit: (item) => {
     popupWithFormEdit.formLoading(true);
     api
       .editProfileInfo(item)
@@ -139,7 +139,7 @@ const popupWithFormEdit = new PopupWithForm({
 }, popupConfig, '.popup-profile');
 
 const popupWithFormAvatar = new PopupWithForm({
-  submit: (item)=> {
+  submit: (item) => {
     popupWithFormAvatar.formLoading(true);
     api
       .changeAvatar(item)
@@ -173,5 +173,5 @@ popupEditButton.addEventListener("click", function () {
 //попап для контента
 popupAddingButton.addEventListener("click", function () {
   popupAddingElementFV.disableButton();
-  popupWithFormAdd.open()
+  popupWithFormAdd.open();
 });

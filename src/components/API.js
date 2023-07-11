@@ -11,13 +11,13 @@ export class API {
     return Promise.reject(`Ошибка: ${res.status}`);
   };
 
-  getUser(){
+  getUser() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._checkResponse);
   };
 
-  editProfileInfo(editData){
+  editProfileInfo(editData) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -61,7 +61,7 @@ export class API {
     }).then(this._checkResponse);
   };
 
-  removeLike (cardID) {
+  removeLike(cardID) {
     return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
       method: "DELETE",
       headers: this._headers,

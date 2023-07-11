@@ -18,7 +18,7 @@ export class Popup {
   }
 
   _closePopup = (evt) => {
-    if (evt.target.classList.contains("popup_opened") || evt.target.classList.contains("popup__close-icon")){
+    if (evt.target.classList.contains("popup_opened") || evt.target.classList.contains("popup__close-icon")) {
         this.close();
     }
   }

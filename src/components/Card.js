@@ -1,5 +1,5 @@
 export class Card {
-  constructor({item, userId, handleZoomImage, handleAddLike, handleRemoveLike, handleDeleteCard}, cardSelector) {
+  constructor({ item, userId, handleZoomImage, handleAddLike, handleRemoveLike, handleDeleteCard }, cardSelector) {
     this._name = item.name;
     this._link = item.link;
     this._ownerId = item.owner._id;

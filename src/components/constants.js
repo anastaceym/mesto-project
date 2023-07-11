@@ -12,7 +12,6 @@ export const popupAddingButton = document.querySelector(".profile__renew-content
 export const popupInputName = document.querySelector(".popup__input_theme_name");
 export const popupInputDescription = document.querySelector(".popup__input_theme_description");
 
- //для аватара и попапа к нему
 export const popupAvatar = document.querySelector(".popup-image-updating");
 export const popupButtonAvatar = document.querySelector(".profile__image-button");
 

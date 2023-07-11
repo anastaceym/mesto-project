@@ -9,11 +9,11 @@ export class FormValidator {
     this._inactiveButtonClass = config.inactiveButtonClass;
   }
 
-  enableValidation () {
+  enableValidation() {
     this._setEventListener(this._popupElement);
   };
 
-  _setEventListener (){
+  _setEventListener() {
     this._inputList = Array.from(this._formInputs);
     this._toggleButtonState();
 
@@ -50,19 +50,19 @@ export class FormValidator {
     }
   };
 
-  _showInputError (input, errorMessage){
+  _showInputError(input, errorMessage) {
     input.classList.add(this._inputErrorClass);
     this._errorEl.textContent = errorMessage;
     this._errorEl.classList.add(this._errorClass);
   };
 
-  _hideInputError (input){
+  _hideInputError(input) {
     input.classList.remove(this._inputErrorClass);
     this._errorEl.classList.remove(this._errorClass);
     this._errorEl.textContent = '';
   };
 
-  _hasInvalidInput (inputList){
+  _hasInvalidInput(inputList) {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
