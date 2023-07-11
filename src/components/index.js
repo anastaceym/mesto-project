@@ -14,7 +14,7 @@ import {
   imagePopupConfig,
   popupConfig,
 } from "./constants";
-import { API } from "./API";
+import { API } from "./Api";
 import { Card } from "./Card";
 import { Section } from "./Section";
 import { UserInfo } from "./UserInfo";
