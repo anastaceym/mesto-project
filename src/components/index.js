@@ -164,7 +164,8 @@ Promise.all([api.getUser(), api.getInitialCards()])
       api
         .changeAvatar(item)
         .then((data) => {
-          console.log(data)
+          userInfo.editProfileImage(data);
+          popupWithFormAvatar.close();
 
         })
         .catch((err) => {
@@ -198,28 +199,6 @@ Promise.all([api.getUser(), api.getInitialCards()])
 //     .finally(() => formLoading(popupAddingSaveButton, false));
 // }
 
-
-//изменение инфо профиля
-// function changeProfile(evt) {
-//   evt.preventDefault();
-//   formLoading(popupSaveButton, true);
-
-//   api
-//     .editProfileInfo({
-//       name: popupInputName.value,
-//       about: popupInputDescription.value,
-//     })
-//     .then((infoData) => {
-//       profileName.textContent = infoData.name;
-//       profileDescription.textContent = infoData.about;
-
-//       popupProfileFV.disableButton(popupSaveButton, validationConfig);
-//       closePopup(popupProfile);
-//     })
-//     .catch((err) => console.log(err))
-//     .finally(() => formLoading(popupSaveButton, false));
-// }
-
 //попап для изменения аватарки профиля
 popupButtonAvatar.addEventListener("click", function () {
   popupAvatarFV.disableButton();
@@ -239,19 +218,3 @@ popupAddingButton.addEventListener("click", function () {
   popupAddingElementFV.disableButton();
   popupWithFormAdd.open()
 });
-
-// function changeAvatarProfile(evt) {
-//   evt.preventDefault();
-//   formLoading(avatarSaveButon, true);
-
-//   api
-//     .changeAvatar({ avatar: avatarInputLink.value })
-//     .then((editData) => {
-//       profileAvatar.src = editData.avatar;
-//       closePopup(popupAvatar);
-//       avatarForm.reset();
-//     })
-//     .catch((err) => console.log(err))
-//     .finally(() => formLoading(avatarSaveButon, false));
-// }
-
