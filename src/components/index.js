@@ -48,6 +48,16 @@ popupAvatarFV.enableValidation();
 const popupProfileFV =new FormValidator(popupProfile, validationConfig);
 popupProfileFV.enableValidation();
 
+const cardList = new Section(
+  {
+    renderer: (item) => {
+      const card = createCard(item);
+      const cardElement = card.makeCard();
+      cardList.addItem(cardElement);
+    },
+  },
+  ".elements"
+);
 
 function createCard(item) {
   const card = new Card({
@@ -96,108 +106,67 @@ Promise.all([api.getUser(), api.getInitialCards()])
   .then(
     ([userData, cards]) => {
       userInfo.editProfileInfo(userData);
-
-      const cardList = new Section(
-        {
-          items: cards,
-          renderer: (item) => {
-            const card = createCard(item);
-            const cardElement = card.makeCard();
-            cardList.addItem(cardElement);
-          },
-        },
-        ".elements"
-      );
-      cardList.renderItems();
+      cardList.renderItems(cards);
     }
   )
   .catch((err) => {
     console.log(err);
   });
 
+const popupWithFormAdd = new PopupWithForm({
+  submit: (item)=> {
+    popupWithFormAdd.formLoading(true);
+    api
+      .addCards(item)
+      .then((data) => {
+        const card = createCard(data);
+        const cardElement = card.makeCard();
+        cardList.addItem(cardElement);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupWithFormAdd.formLoading(false);
+      });
+  }
+}, '.popup-adding');
 
-  const popupWithFormAdd = new PopupWithForm({
-    submit: (item)=> {
-      console.log(item)
-      popupWithFormAdd.formLoading(true);
-      api
-        .addCards(item)
-        .then((data) => {
-          console.log('тут')
-          const card = createCard(data);
-          const cardElement = card.makeCard();
-          cardList.addItem(cardElement);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          popupWithFormAdd.formLoading(false);
-        });
-    }
-  }, '.popup-adding');
+const popupWithFormEdit = new PopupWithForm({
+  submit: (item)=> {
+    popupWithFormEdit.formLoading(true);
+    api
+      .editProfileInfo(item)
+      .then((data) => {
+        userInfo.editProfileInfo(data);
+        popupWithFormEdit.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupWithFormEdit.formLoading(false);
+      });
+  }
+}, '.popup-profile');
 
-
-  const popupWithFormEdit = new PopupWithForm({
-    submit: (item)=> {
-      console.log(item)
-      popupWithFormEdit.formLoading(true);
-      api
-        .editProfileInfo(item)
-        .then((data) => {
-          userInfo.editProfileInfo(data);
-          popupWithFormEdit.close();
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          popupWithFormEdit.formLoading(false);
-        });
-    }
-  }, '.popup-profile');
-
-
-  const popupWithFormAvatar = new PopupWithForm({
-    submit: (item)=> {
-      popupWithFormAvatar.formLoading(true);
-      api
-        .changeAvatar(item)
-        .then((data) => {
-          userInfo.editProfileImage(data);
-          popupWithFormAvatar.close();
-
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          popupWithFormAvatar.formLoading(false);
-        });
-    }
-  }, '.popup-image-updating');
-
-
-// function changeCards(evt) {
-//   const cardObject = { name: nameAddNewCard.value, link: linkAddNewCard.value };
-//   evt.preventDefault();
-//   formLoading(popupAddingSaveButton, true);
-
-//   api
-//     .addCards(cardObject)
-//     .then((inputData) => {
-//       console.log(inputData);
-
-//       createCard(inputData);
-
-//       // card.makeCard();
-//       popupAddingElementFV.disableButton();
-//       closePopup(popupAddingElement);
-//       cardSubmit.reset();
-//     })
-//     .catch((err) => console.log(err))
-//     .finally(() => formLoading(popupAddingSaveButton, false));
-// }
+const popupWithFormAvatar = new PopupWithForm({
+  submit: (item)=> {
+    popupWithFormAvatar.formLoading(true);
+    api
+      .changeAvatar(item)
+      .then((data) => {
+        userInfo.editProfileImage(data);
+        popupWithFormAvatar.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupWithFormAvatar.formLoading(false);
+      });
+  }
+}, '.popup-image-updating');
 
 //попап для изменения аватарки профиля
 popupButtonAvatar.addEventListener("click", function () {
