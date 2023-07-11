@@ -135,8 +135,46 @@ Promise.all([api.getUser(), api.getInitialCards()])
         });
     }
   }, '.popup-adding');
-  // const popupWithFormEdit = new PopupWithForm('.popup-profile');
-  // const popupWithFormAvatar = new PopupWithForm('.popup-image-updating');
+
+
+  const popupWithFormEdit = new PopupWithForm({
+    submit: (item)=> {
+      console.log(item)
+      popupWithFormEdit.formLoading(true);
+      api
+        .editProfileInfo(item)
+        .then((data) => {
+          console.log(data)
+          // userInfo.editProfile(res);
+          // popupWithFormEdit.close();
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          popupWithFormEdit.formLoading(false);
+        });
+    }
+  }, '.popup-profile');
+
+
+  const popupWithFormAvatar = new PopupWithForm({
+    submit: (item)=> {
+      popupWithFormAvatar.formLoading(true);
+      api
+        .changeAvatar(item)
+        .then((data) => {
+          console.log(data)
+
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          popupWithFormAvatar.formLoading(false);
+        });
+    }
+  }, '.popup-image-updating');
 
 
 // function changeCards(evt) {
@@ -160,7 +198,6 @@ Promise.all([api.getUser(), api.getInitialCards()])
 //     .finally(() => formLoading(popupAddingSaveButton, false));
 // }
 
-// cardSubmit.addEventListener("submit", changeCards);
 
 //изменение инфо профиля
 // function changeProfile(evt) {
@@ -191,7 +228,7 @@ popupButtonAvatar.addEventListener("click", function () {
 
 //попап для профиля
 popupEditButton.addEventListener("click", function () {
-  const user = userInfo.getUser();
+  const user = userInfo.getUserInfo();
   avatarInputLink.value = user.name;
   avatarSaveButon.value = user.about;
   popupWithFormEdit.open();
@@ -199,13 +236,9 @@ popupEditButton.addEventListener("click", function () {
 
 //попап для контента
 popupAddingButton.addEventListener("click", function () {
-  console.log('clikc add')
   popupAddingElementFV.disableButton();
   popupWithFormAdd.open()
 });
-
-//сохраняем изменения
-// profileSubmit.addEventListener("submit", changeProfile);
 
 // function changeAvatarProfile(evt) {
 //   evt.preventDefault();
@@ -222,4 +255,3 @@ popupAddingButton.addEventListener("click", function () {
 //     .finally(() => formLoading(avatarSaveButon, false));
 // }
 
-// avatarForm.addEventListener("submit", changeAvatarProfile);
