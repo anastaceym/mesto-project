@@ -118,6 +118,7 @@ Promise.all([api.getUser(), api.getInitialCards()])
 
   const popupWithFormAdd = new PopupWithForm({
     submit: (item)=> {
+      console.log(item)
       popupWithFormAdd.formLoading(true);
       api
         .addCards(item)
@@ -144,9 +145,8 @@ Promise.all([api.getUser(), api.getInitialCards()])
       api
         .editProfileInfo(item)
         .then((data) => {
-          console.log(data)
-          // userInfo.editProfile(res);
-          // popupWithFormEdit.close();
+          userInfo.editProfileInfo(data);
+          popupWithFormEdit.close();
         })
         .catch((err) => {
           console.log(err);
@@ -229,8 +229,8 @@ popupButtonAvatar.addEventListener("click", function () {
 //попап для профиля
 popupEditButton.addEventListener("click", function () {
   const user = userInfo.getUserInfo();
-  avatarInputLink.value = user.name;
-  avatarSaveButon.value = user.about;
+  popupInputName.value = user.title;
+  popupInputDescription.value = user.about;
   popupWithFormEdit.open();
 });
 
