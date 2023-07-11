@@ -18,7 +18,7 @@ export class Popup {
   }
 
   _closePopup = (evt) => {
-    if (evt.target.classList.contains("popup_opened")){
+    if (evt.target.classList.contains("popup_opened") || evt.target.classList.contains("popup__close-icon")){
         this.close();
     }
   }
@@ -29,15 +29,8 @@ export class Popup {
     }
   }
 
-  _closePopupOnOverlay = (evt) => {
-    if (evt.target.classList.contains("popup_opened")) {
-        this.close();
-    }
-  }
-
   setEventListeners() {
     this._popup.addEventListener('mousedown', this._closePopup);
-    this._popup.addEventListener('mousedown', this._closePopupOnOverlay);
     document.addEventListener('keydown', this._closePopupOnEsc);
   }
 
