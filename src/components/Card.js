@@ -54,7 +54,6 @@ export class Card {
     this._like.addEventListener("click", () => this._toggleLike());
     this._cardDeleteButton.addEventListener("click", () => this._handleDeleteCard(this));
     this._cardPicture.addEventListener('click', () => this._handleZoomImage(this));
-    // this._cardPicture.addEventListener('click', () => zoomCardImage(cardData.name, cardData.link));
   }
 
   makeCard() {

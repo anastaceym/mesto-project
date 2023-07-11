@@ -9,10 +9,10 @@
 //   buttonElement.disabled = true;
 //   }
 
-export function formLoading(button, hasLoading) {
-  if(hasLoading) {
-    button.textContent = "Сохранение...";
-  } else {
-    button.textContent = "Сохранить";
-  }
-}
+// export function formLoading(button, hasLoading) {
+//   if(hasLoading) {
+//     button.textContent = "Сохранение...";
+//   } else {
+//     button.textContent = "Сохранить";
+//   }
+// }
