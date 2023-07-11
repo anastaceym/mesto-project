@@ -2,31 +2,18 @@ import "../pages/index.css";
 import {
   popupAddingElement,
   validationConfig,
-  nameAddNewCard,
-  linkAddNewCard,
   popupEditButton,
   popupAddingButton,
   popupInputName,
   popupInputDescription,
-  profileName,
-  profileDescription,
-  cardSubmit,
-  popupAddingSaveButton,
-  popupSaveButton,
-  profileSubmit,
   popupProfile,
   popupAvatar,
   popupButtonAvatar,
-  avatarSaveButon,
-  avatarInputLink,
-  profileAvatar,
-  avatarForm,
   APIconfig,
   profileConfig,
   imagePopupConfig
 } from "./constants";
 import { openPopup, closePopup } from "./modal";
-import { formLoading } from "./utils"; //renderCard
 import { API } from "./API";
 import { Card } from "./Card";
 import { Section } from "./Section";
@@ -122,6 +109,7 @@ const popupWithFormAdd = new PopupWithForm({
         const card = createCard(data);
         const cardElement = card.makeCard();
         cardList.addItem(cardElement);
+        popupWithFormAdd.close();
       })
       .catch((err) => {
         console.log(err);
