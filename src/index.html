@@ -60,7 +60,7 @@
             class="popup__input popup__input_theme_name"
             id="name-input"
             type="text"
-            name="field-name"
+            name="name"
             placeholder="Имя пользователя"
             value=""
             minlength="2"
@@ -74,7 +74,7 @@
             class="popup__input popup__input_theme_description"
             id="description-input"
             type="text"
-            name="field-content"
+            name="about"
             placeholder="Описание контента"
             value=""
             minlength="2"
@@ -84,7 +84,7 @@
             required
           />
           <span class="popup__error" id="description-input-error"></span>
-          <button type="submit" class="popup__save" disabled>Сохранить</button>
+          <button type="submit" class="popup__btn-submit popup__save" disabled>Сохранить</button>
         </form>
       </div>
     </div>
@@ -101,7 +101,7 @@
             class="popup__input popup__input_theme_name popup__input_theme_name-adding"
             id="adding-name-input"
             type="text"
-            name="field-name"
+            name="name"
             placeholder="Название"
             value=""
             minlength="2"
@@ -115,13 +115,13 @@
             class="popup__input popup__input_theme_description popup__input_theme_description-adding"
             id="adding-description-input"
             type="url"
-            name="field-content"
+            name="link"
             placeholder="Ссылка на картинку"
             value=""
             required
           />
           <span class="popup__error" id="adding-description-input-error"></span>
-          <button type="submit" class="popup__save popup__save-adding" disabled>
+          <button type="submit" class="popup__btn-submit popup__save popup__save-adding" disabled>
             Создать
           </button>
         </form>
@@ -180,7 +180,7 @@
             class="popup__input popup__input_theme_description-image-updating"
             id="image-updating-description-input"
             type="url"
-            name="field-content"
+            name="avatar"
             placeholder="Ссылка на картинку"
             value=""
             required
@@ -189,7 +189,7 @@
             class="popup__error popup__error-image-updating"
             id="image-updating-description-input-error"
           ></span>
-          <button type="submit" class="popup__save popup__save-image-updating">
+          <button type="submit" class="popup__btn-submit popup__save popup__save-image-updating">
             Сохранить
           </button>
         </form>

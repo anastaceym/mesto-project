@@ -1,5 +1,6 @@
 export class UserInfo {
   constructor(profileConfig) {
+    this.profileConfig = profileConfig;
     this._profileTitle = document.querySelector(profileConfig.title);
     this._profileAbout = document.querySelector(profileConfig.about);
     this._profileAvatar = document.querySelector(profileConfig.avatar);
@@ -11,7 +12,7 @@ export class UserInfo {
       about: this._profileAbout.textContent,
     };
     return data;
-  } //нужна для обработчика открытия попапа профиля
+  }
 
   editProfileInfo(data) {
     this._profileAvatar.alt = `${data.name}`;
