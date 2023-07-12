@@ -9,7 +9,7 @@ export class PopupWithForm extends Popup {
     this._submit = submit;
   }
 
-  formLoading(hasLoading) {
+  renderLoading(hasLoading) {
     if(hasLoading) {
       this._button.textContent = "Сохранение...";
     } else {
@@ -42,7 +42,6 @@ export class PopupWithForm extends Popup {
 
   close() {
     this._form.reset();
-    this._removeEventListeners();
     super.close();
   }
 }

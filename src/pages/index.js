@@ -39,7 +39,7 @@ const cardList = new Section(
   {
     renderer: (item) => {
       const card = createCard(item);
-      const cardElement = card.makeCard();
+      const cardElement = card.makeCard(); //это нужно переместить в функцию createCard
       cardList.addItem(cardElement);
     },
   },
@@ -102,7 +102,7 @@ Promise.all([api.getUser(), api.getInitialCards()])
 
 const popupWithFormAdd = new PopupWithForm({
   submit: (item) => {
-    popupWithFormAdd.formLoading(true);
+    popupWithFormAdd.renderLoading(true);
     api
       .addCards(item)
       .then((data) => {
@@ -115,14 +115,14 @@ const popupWithFormAdd = new PopupWithForm({
         console.log(err);
       })
       .finally(() => {
-        popupWithFormAdd.formLoading(false);
+        popupWithFormAdd.renderLoading(false);
       });
   }
 }, popupConfig, '.popup-adding');
 
 const popupWithFormEdit = new PopupWithForm({
   submit: (item) => {
-    popupWithFormEdit.formLoading(true);
+    popupWithFormEdit.renderLoading(true);
     api
       .editProfileInfo(item)
       .then((data) => {
@@ -133,14 +133,14 @@ const popupWithFormEdit = new PopupWithForm({
         console.log(err);
       })
       .finally(() => {
-        popupWithFormEdit.formLoading(false);
+        popupWithFormEdit.renderLoading(false);
       });
   }
 }, popupConfig, '.popup-profile');
 
 const popupWithFormAvatar = new PopupWithForm({
   submit: (item) => {
-    popupWithFormAvatar.formLoading(true);
+    popupWithFormAvatar.renderLoading(true);
     api
       .changeAvatar(item)
       .then((data) => {
@@ -151,7 +151,7 @@ const popupWithFormAvatar = new PopupWithForm({
         console.log(err);
       })
       .finally(() => {
-        popupWithFormAvatar.formLoading(false);
+        popupWithFormAvatar.renderLoading(false);
       });
   }
 }, popupConfig, '.popup-image-updating');
