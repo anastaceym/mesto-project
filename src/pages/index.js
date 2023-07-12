@@ -13,14 +13,14 @@ import {
   profileConfig,
   imagePopupConfig,
   popupConfig,
-} from "./constants";
-import { API } from "./Api";
-import { Card } from "./Card";
-import { Section } from "./Section";
-import { UserInfo } from "./UserInfo";
-import { FormValidator } from "./FormValidator";
-import { PopupWithImage } from "./PopupWithImage";
-import { PopupWithForm } from "./PopupWithForm";
+} from "../utils/constants";
+import { API } from "../components/Api";
+import { Card } from "../components/Card";
+import { Section } from "../components/Section";
+import { UserInfo } from "../components/UserInfo";
+import { FormValidator } from "../components/FormValidator";
+import { PopupWithImage } from "../components/PopupWithImage";
+import { PopupWithForm } from "../components/PopupWithForm";
 
 const api = new API(APIconfig);
 const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
