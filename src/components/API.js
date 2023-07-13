@@ -11,10 +11,12 @@ export class API {
     return Promise.reject(`Ошибка: ${res.status}`);
   };
 
+  _request(url, options) {
+    return fetch(url, options).then(this._checkResponse)
+  }
+
   getUser() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
-    }).then(this._checkResponse);
+    this._request(`${this._baseUrl}/users/me`, { headers: this._headers});
   };
 
   editProfileInfo(editData) {
