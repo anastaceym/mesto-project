@@ -159,6 +159,7 @@ const popupWithFormAvatar = new PopupWithForm({
 //попап для изменения аватарки профиля
 popupButtonAvatar.addEventListener("click", function () {
   popupAvatarFV.disableButton();
+  popupAvatarFV.resetValidation();
   popupWithFormAvatar.open();
 });
 
@@ -167,11 +168,13 @@ popupEditButton.addEventListener("click", function () {
   const user = userInfo.getUserInfo();
   popupInputName.value = user.title;
   popupInputDescription.value = user.about;
+  popupProfileFV.resetValidation();
   popupWithFormEdit.open();
 });
 
 //попап для контента
 popupAddingButton.addEventListener("click", function () {
   popupAddingElementFV.disableButton();
+  popupAddingElementFV.resetValidation();
   popupWithFormAdd.open();
 });

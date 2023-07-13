@@ -67,5 +67,4 @@ export class API {
       headers: this._headers
     });
   }
-
 }
