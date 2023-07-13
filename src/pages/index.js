@@ -1,18 +1,18 @@
 import "../pages/index.css";
 import {
-  popupAddingElement,
   validationConfig,
   popupEditButton,
   popupAddingButton,
   popupInputName,
   popupInputDescription,
-  popupProfile,
-  popupAvatar,
   popupButtonAvatar,
   APIconfig,
   profileConfig,
   imagePopupConfig,
   popupConfig,
+  formAvatar,
+  formCard,
+  formProfile
 } from "../utils/constants";
 import { API } from "../components/API";
 import { Card } from "../components/Card";
@@ -26,13 +26,13 @@ const api = new API(APIconfig);
 const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
 const userInfo = new UserInfo(profileConfig);
 
-const popupAddingElementFV = new FormValidator(popupAddingElement, validationConfig);
+const popupAddingElementFV = new FormValidator(formCard, validationConfig);
 popupAddingElementFV.enableValidation();
 
-const popupAvatarFV =new FormValidator(popupAvatar, validationConfig);
+const popupAvatarFV =new FormValidator(formAvatar, validationConfig);
 popupAvatarFV.enableValidation();
 
-const popupProfileFV =new FormValidator(popupProfile, validationConfig);
+const popupProfileFV =new FormValidator(formProfile, validationConfig);
 popupProfileFV.enableValidation();
 
 const cardList = new Section(
