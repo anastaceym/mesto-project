@@ -16,7 +16,7 @@ export class API {
   }
 
   getUser() {
-    this._request(`${this._baseUrl}/users/me`, { headers: this._headers});
+    return this._request(`${this._baseUrl}/users/me`, { headers: this._headers});
   };
 
   editProfileInfo(editData) {
