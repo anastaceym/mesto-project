@@ -38,8 +38,7 @@ popupProfileFV.enableValidation();
 const cardList = new Section(
   {
     renderer: (item) => {
-      const card = createCard(item);
-      const cardElement = card.makeCard(); //это нужно переместить в функцию createCard
+      const cardElement = createCard(item);
       cardList.addItem(cardElement);
     },
   },
@@ -86,7 +85,8 @@ function createCard(item) {
         });
     }
   }, "#card-template");
-  return card;
+
+  return card.makeCard();
 }
 
 Promise.all([api.getUser(), api.getInitialCards()])
@@ -106,8 +106,7 @@ const popupWithFormAdd = new PopupWithForm({
     api
       .addCards(item)
       .then((data) => {
-        const card = createCard(data);
-        const cardElement = card.makeCard();
+        const cardElement = createCard(data);
         cardList.addItem(cardElement);
         popupWithFormAdd.close();
       })
