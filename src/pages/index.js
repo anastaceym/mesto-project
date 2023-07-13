@@ -26,14 +26,20 @@ const api = new API(APIconfig);
 const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
 const userInfo = new UserInfo(profileConfig);
 
-const popupAddingElementFV = new FormValidator(formCard, validationConfig);
-popupAddingElementFV.enableValidation();
+const formValidators = {}
 
-const popupAvatarFV =new FormValidator(formAvatar, validationConfig);
-popupAvatarFV.enableValidation();
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config);
+    const formName = formElement.getAttribute('name');
 
-const popupProfileFV =new FormValidator(formProfile, validationConfig);
-popupProfileFV.enableValidation();
+    formValidators[formName] = validator;
+    validator.enableValidation(validationConfig);
+  });
+};
+
+enableValidation(validationConfig);
 
 const cardList = new Section(
   {
@@ -157,8 +163,8 @@ const popupWithFormAvatar = new PopupWithForm({
 
 //попап для изменения аватарки профиля
 popupButtonAvatar.addEventListener("click", function () {
-  popupAvatarFV.disableButton();
-  popupAvatarFV.resetValidation();
+  formValidators['avatar'].disableButton();
+  formValidators['avatar'].resetValidation();
   popupWithFormAvatar.open();
 });
 
@@ -167,13 +173,13 @@ popupEditButton.addEventListener("click", function () {
   const user = userInfo.getUserInfo();
   popupInputName.value = user.title;
   popupInputDescription.value = user.about;
-  popupProfileFV.resetValidation();
+  formValidators['profile'].resetValidation();
   popupWithFormEdit.open();
 });
 
 //попап для контента
 popupAddingButton.addEventListener("click", function () {
-  popupAddingElementFV.disableButton();
-  popupAddingElementFV.resetValidation();
+  formValidators['addCard'].disableButton();
+  formValidators['addCard'].resetValidation();
   popupWithFormAdd.open();
 });
