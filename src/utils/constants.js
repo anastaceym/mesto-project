@@ -11,10 +11,6 @@ export const popupInputName = document.querySelector(".popup__input_theme_name")
 export const popupInputDescription = document.querySelector(".popup__input_theme_description");
 export const popupButtonAvatar = document.querySelector(".profile__image-button");
 
-export const formProfile = document.querySelector(".popup__panel-profile");
-export const formAvatar = document.querySelector(".popup__panel_type_profile-image");
-export const formCard = document.querySelector(".popup__panel-cards");
-
 export const validationConfig = {
   formSelector: '.popup__panel',
   inputSelector: '.popup__input',

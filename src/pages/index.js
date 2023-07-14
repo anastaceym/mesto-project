@@ -9,10 +9,7 @@ import {
   APIconfig,
   profileConfig,
   imagePopupConfig,
-  popupConfig,
-  formAvatar,
-  formCard,
-  formProfile
+  popupConfig
 } from "../utils/constants";
 import { API } from "../components/API";
 import { Card } from "../components/Card";
