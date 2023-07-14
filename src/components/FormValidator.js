@@ -1,20 +1,19 @@
 export class FormValidator {
-  constructor(popupElement, config) {
-    this._popupElement = popupElement;
-    this._formElement = this._popupElement.querySelector(config.formSelector);
-    this._formInputs = this._popupElement.querySelectorAll(config.inputSelector);
-    this._formSubmit = this._popupElement.querySelector(config.submitButtonSelector);
+  constructor(formElement, config) {
+    this._formElement = formElement;
+    this._formInputs = this._formElement.querySelectorAll(config.inputSelector);
+    this._formSubmit = this._formElement.querySelector(config.submitButtonSelector);
     this._errorClass = config.errorClass;
     this._inputErrorClass = config.inputErrorClass;
     this._inactiveButtonClass = config.inactiveButtonClass;
   }
 
   enableValidation() {
-    this._setEventListener(this._popupElement);
+    this._setEventListener(this._formElement);
   };
 
   _setEventListener() {
-    this._inputList = Array.from(this._formInputs);
+    this._inputList = Array.from(this._formElement);
     this._toggleButtonState();
 
     this._inputList.forEach((inputElement) => {
@@ -26,7 +25,7 @@ export class FormValidator {
   };
 
   _checkInputValidity(input) {
-    this._errorEl = this._popupElement.querySelector(`#${input.id}-error`);
+    this._errorEl = this._formElement.querySelector(`#${input.id}-error`);
 
     if (input.validity.patternMismatch) {
       input.setCustomValidity(input.dataset.errorMessage);
@@ -40,6 +39,14 @@ export class FormValidator {
       this._hideInputError(input);
     }
   };
+
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
 
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
@@ -58,8 +65,10 @@ export class FormValidator {
 
   _hideInputError(input) {
     input.classList.remove(this._inputErrorClass);
-    this._errorEl.classList.remove(this._errorClass);
-    this._errorEl.textContent = '';
+    if(this._errorEl) {
+      this._errorEl.classList.remove(this._errorClass);
+      this._errorEl.textContent = '';
+    }
   };
 
   _hasInvalidInput(inputList) {

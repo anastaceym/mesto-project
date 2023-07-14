@@ -1,45 +1,47 @@
 import "../pages/index.css";
 import {
-  popupAddingElement,
   validationConfig,
   popupEditButton,
   popupAddingButton,
   popupInputName,
   popupInputDescription,
-  popupProfile,
-  popupAvatar,
   popupButtonAvatar,
   APIconfig,
   profileConfig,
   imagePopupConfig,
-  popupConfig,
-} from "./constants";
-import { API } from "./Api";
-import { Card } from "./Card";
-import { Section } from "./Section";
-import { UserInfo } from "./UserInfo";
-import { FormValidator } from "./FormValidator";
-import { PopupWithImage } from "./PopupWithImage";
-import { PopupWithForm } from "./PopupWithForm";
+  popupConfig
+} from "../utils/constants";
+import { API } from "../components/API";
+import { Card } from "../components/Card";
+import { Section } from "../components/Section";
+import { UserInfo } from "../components/UserInfo";
+import { FormValidator } from "../components/FormValidator";
+import { PopupWithImage } from "../components/PopupWithImage";
+import { PopupWithForm } from "../components/PopupWithForm";
 
 const api = new API(APIconfig);
 const popupWithImage = new PopupWithImage('.popup-zoom', imagePopupConfig);
 const userInfo = new UserInfo(profileConfig);
 
-const popupAddingElementFV = new FormValidator(popupAddingElement, validationConfig);
-popupAddingElementFV.enableValidation();
+const formValidators = {}
 
-const popupAvatarFV =new FormValidator(popupAvatar, validationConfig);
-popupAvatarFV.enableValidation();
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config);
+    const formName = formElement.getAttribute('name');
 
-const popupProfileFV =new FormValidator(popupProfile, validationConfig);
-popupProfileFV.enableValidation();
+    formValidators[formName] = validator;
+    validator.enableValidation(validationConfig);
+  });
+};
+
+enableValidation(validationConfig);
 
 const cardList = new Section(
   {
     renderer: (item) => {
-      const card = createCard(item);
-      const cardElement = card.makeCard();
+      const cardElement = createCard(item);
       cardList.addItem(cardElement);
     },
   },
@@ -86,7 +88,8 @@ function createCard(item) {
         });
     }
   }, "#card-template");
-  return card;
+
+  return card.makeCard();
 }
 
 Promise.all([api.getUser(), api.getInitialCards()])
@@ -102,12 +105,11 @@ Promise.all([api.getUser(), api.getInitialCards()])
 
 const popupWithFormAdd = new PopupWithForm({
   submit: (item) => {
-    popupWithFormAdd.formLoading(true);
+    popupWithFormAdd.renderLoading(true);
     api
       .addCards(item)
       .then((data) => {
-        const card = createCard(data);
-        const cardElement = card.makeCard();
+        const cardElement = createCard(data);
         cardList.addItem(cardElement);
         popupWithFormAdd.close();
       })
@@ -115,14 +117,14 @@ const popupWithFormAdd = new PopupWithForm({
         console.log(err);
       })
       .finally(() => {
-        popupWithFormAdd.formLoading(false);
+        popupWithFormAdd.renderLoading(false);
       });
   }
 }, popupConfig, '.popup-adding');
 
 const popupWithFormEdit = new PopupWithForm({
   submit: (item) => {
-    popupWithFormEdit.formLoading(true);
+    popupWithFormEdit.renderLoading(true);
     api
       .editProfileInfo(item)
       .then((data) => {
@@ -133,14 +135,14 @@ const popupWithFormEdit = new PopupWithForm({
         console.log(err);
       })
       .finally(() => {
-        popupWithFormEdit.formLoading(false);
+        popupWithFormEdit.renderLoading(false);
       });
   }
 }, popupConfig, '.popup-profile');
 
 const popupWithFormAvatar = new PopupWithForm({
   submit: (item) => {
-    popupWithFormAvatar.formLoading(true);
+    popupWithFormAvatar.renderLoading(true);
     api
       .changeAvatar(item)
       .then((data) => {
@@ -151,14 +153,15 @@ const popupWithFormAvatar = new PopupWithForm({
         console.log(err);
       })
       .finally(() => {
-        popupWithFormAvatar.formLoading(false);
+        popupWithFormAvatar.renderLoading(false);
       });
   }
 }, popupConfig, '.popup-image-updating');
 
 //попап для изменения аватарки профиля
 popupButtonAvatar.addEventListener("click", function () {
-  popupAvatarFV.disableButton();
+  formValidators['avatar'].disableButton();
+  formValidators['avatar'].resetValidation();
   popupWithFormAvatar.open();
 });
 
@@ -167,11 +170,13 @@ popupEditButton.addEventListener("click", function () {
   const user = userInfo.getUserInfo();
   popupInputName.value = user.title;
   popupInputDescription.value = user.about;
+  formValidators['profile'].resetValidation();
   popupWithFormEdit.open();
 });
 
 //попап для контента
 popupAddingButton.addEventListener("click", function () {
-  popupAddingElementFV.disableButton();
+  formValidators['addCard'].disableButton();
+  formValidators['addCard'].resetValidation();
   popupWithFormAdd.open();
 });

@@ -3,16 +3,12 @@ export const popupImageName = document.querySelector('.popup__caption');
 export const popupImageLink = document.querySelector('.popup__image');
 
 export const cardsContainer = document.querySelector(".elements");
-export const popupAddingElement = document.querySelector(".popup-adding");
-export const popupCloseButtons = document.querySelectorAll(".popup__close-icon");
 
-export const popupProfile = document.querySelector(".popup-profile");
+export const popupCloseButtons = document.querySelectorAll(".popup__close-icon");
 export const popupEditButton = document.querySelector(".profile__edit-button");
 export const popupAddingButton = document.querySelector(".profile__renew-content");
 export const popupInputName = document.querySelector(".popup__input_theme_name");
 export const popupInputDescription = document.querySelector(".popup__input_theme_description");
-
-export const popupAvatar = document.querySelector(".popup-image-updating");
 export const popupButtonAvatar = document.querySelector(".profile__image-button");
 
 export const validationConfig = {
